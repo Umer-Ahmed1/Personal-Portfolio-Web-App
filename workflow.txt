@@ -1,3 +1,18 @@
 Workflow-1:
 Workflow-2
-Workflow-3
+Workflow-3:
+Project Management & Package Selection
+Description:
+This workflow allows the admin to manage portfolio projects and service packages, while users can view available packages and submit project requests. It supports efficient handling of projects and client requirements.
+
+Key Features:
+1. Admin authentication and dashboard
+2. Project and package management (CRUD)
+3. Project request handling
+
+Flow:
+1. Admin logs into the system.
+2. Admin manages portfolio projects (add/update/delete).
+3. User views available service packages.
+4. User selects a package and submits a project request.
+5. Admin reviews and manages project requests.
