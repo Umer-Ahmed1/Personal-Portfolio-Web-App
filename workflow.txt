@@ -1,5 +1,5 @@
 Workflow-1:
-Workflow-2:
+Workflow-2
 Client Query / Contact Submission
 Description:
 This workflow enables users or potential clients to submit queries or messages through a contact form. The system collects user information, validates inputs, and stores queries for admin review.
