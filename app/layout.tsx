@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import { Michroma } from "next/font/google";
 import SmoothScroll from "@/app/components/SmoothScroll";
+import Footer from "./components/Footer";
 
 
 
@@ -33,6 +34,8 @@ export default function RootLayout({
         <Header />
         </SmoothScroll>
         {children}
+           <Footer />
+    
       </body>
     </html>
   );
