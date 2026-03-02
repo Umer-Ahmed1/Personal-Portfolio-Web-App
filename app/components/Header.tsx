@@ -20,7 +20,7 @@ export default function Header() {
   };
   return (
     <header className="bg-[#222222] text-[#EEEEEE] fixed w-full z-50 shadow-md">
-      <div className="max-w-[1700px] mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-425 mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Left */}
         <div className="text-xl font-bold cursor-pointer" onClick={() => handleScroll("home")}>

@@ -21,8 +21,8 @@ export default function AboutSection() {
       </div>
 
       {/* ===== GRADIENT ELLIPSE (Bottom Right) ===== */}
-      <div className="absolute bottom-[-300px] right-[-200px] w-[900px] h-[900px] rounded-full pointer-events-none
-                      bg-[radial-gradient(ellipse_at_center,_#B42A2A_30%,_#060606_90%)] 
+      <div className="absolute -bottom-75 -right-50 w-225 h-225 rounded-full pointer-events-none
+                      bg-[radial-gradient(ellipse_at_center,#B42A2A_30%,#060606_90%)] 
                       opacity-10 blur-[100px]" />
 
       {/* ===== CONTENT ===== */}

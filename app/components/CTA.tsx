@@ -23,7 +23,7 @@ export default function CallToAction() {
           }}
         />
         {/* Optional subtle gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/30 to-black/60" />
       </div>
 
       {/* Content */}
@@ -50,7 +50,7 @@ export default function CallToAction() {
                 bg-red-600 hover:bg-red-700
                 text-white rounded-lg
                 transition-all duration-300 shadow-lg hover:shadow-red-900/30
-                min-w-[220px]
+                min-w-55
               "
             >
               Start A Project
@@ -65,7 +65,7 @@ export default function CallToAction() {
                 text-white rounded-lg
                 backdrop-blur-sm bg-white/5 hover:bg-white/10
                 transition-all duration-300
-                min-w-[220px]
+                min-w-55
               "
             >
               Book A Strategy Call

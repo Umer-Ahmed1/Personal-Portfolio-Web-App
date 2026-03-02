@@ -4,37 +4,35 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-300">
-      {/* Main content area */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12">
+      <footer className="bg-[#222222] text-[#EEEEEE] w-full z-50 shadow-md">
+      <div className="max-w-425 mx-auto px-6 py-16 flex items-center justify-between">
           {/* Brand + Social */}
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <div className="space-y-22">
+            <h2 className="text-3xl md:text-4xl font- text-white tracking-tight">
               Umer Ahmed
             </h2>
 
-            <div className="flex gap-5">
+            <div className="flex gap-5 ">
               <a
                 href="#"
                 aria-label="Facebook"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
               >
-                <FaFacebookF size={22} />
+                <FaFacebookF size={18} />
               </a>
               <a
                 href="#"
                 aria-label="Instagram"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
               >
-                <FaInstagram size={22} />
+                <FaInstagram size={18} />
               </a>
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
+                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
               >
-                <FaLinkedinIn size={22} />
+                <FaLinkedinIn size={18} />
               </a>
             </div>
           </div>
@@ -83,6 +81,7 @@ export default function Footer() {
                 <li>Systems Architecture</li>
               </ul>
             </div>
+                  </div>
 
             {/* Contact */}
             <div>
@@ -99,8 +98,6 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
       </div>
 
       {/* Bottom bar */}
@@ -122,6 +119,5 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
 }
