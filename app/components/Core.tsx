@@ -1,160 +1,126 @@
 "use client";
 
-import { useRef } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { useReveal } from "@/app/hooks/useReveal";
 
-const competencies = [
+interface CompetencyCard {
+  num: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const cards: CompetencyCard[] = [
   {
-    id: "01",
+    num: "01",
+    icon: "🎨",
     title: "UX/UI Design",
     description:
-      "Crafting intuitive, high-conversion interfaces that put the user first.",
+      "Creating intuitive, high-conversion interfaces that put the user first and drive measurable outcomes.",
   },
   {
-    id: "02",
+    num: "02",
+    icon: "⚙️",
     title: "Full-Stack Development",
     description:
-      "Building robust, scalable backends and pixel-perfect frontends.",
+      "Building robust, scalable backends and pixel-perfect frontends that perform at every layer.",
   },
   {
-    id: "03",
+    num: "03",
+    icon: "📋",
     title: "Project Management",
     description:
-      "Agile workflows and structured timelines to ensure zero-gap delivery.",
+      "Agile workflows and structured timelines to ensure zero-gap delivery, every single time.",
   },
   {
-    id: "04",
+    num: "04",
+    icon: "🏗️",
     title: "Systems Architecture",
     description:
-      "Designing the 'big picture' technical strategy to ensure long-term scalability.",
-  },
-  {
-    id: "05",
-    title: "Quality Assurance",
-    description:
-      "Ensuring code quality, security, and user experience through rigorous testing.",
-  },
-  {
-    id: "06",
-    title: "Collaboration and Communication",
-    description:
-      "Building strong relationships with clients, team members, and stakeholders.",
-  },
-  {
-    id: "07",
-    title: "Continuous Learning and Innovation",
-    description:
-      "Stay up-to-date with the latest industry trends and technologies.",
+      "Designing the foundations that ensure long-term scale, performance, and technical clarity.",
   },
 ];
 
-export default function CoreCompetencies() {
-  const sliderRef = useRef<HTMLDivElement>(null);
+export default function Competencies() {
+  const { ref, isVisible } = useReveal();
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  const scroll = (direction: "left" | "right") => {
-    if (!sliderRef.current) return;
-
-    const scrollAmount = sliderRef.current.offsetWidth * 0.8;
-
-    sliderRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  const handlePrev = () => setActiveIdx((i) => (i - 1 + cards.length) % cards.length);
+  const handleNext = () => setActiveIdx((i) => (i + 1) % cards.length);
 
   return (
-    <section className="relative bg-[#111111] text-[#EEEEEE] py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-
-        {/* ===== Header ===== */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-14">
-          <h2 className="text-3xl md:text-5xl font-light">
-            Core Competencies
-          </h2>
-
-          <p className="mt-4 md:mt-0 text-gray-400 max-w-xs text-right">
-            I Bridge The Gap Between <br />
-            Stakeholders And Technology
+    <section
+      id="competencies"
+      ref={ref}
+      className={`px-[60px] py-[80px] border-t border-[#222] overflow-hidden reveal ${isVisible ? "visible" : ""}`}
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between mb-12">
+        <h2 className="font-syne font-extrabold tracking-[-0.5px] text-[clamp(28px,3.5vw,44px)]">
+          Core Competencies
+        </h2>
+        <div className="max-w-[280px] text-right">
+          <p className="text-[13px] text-[#888] leading-[1.7]">
+            I Bridge The Gap Between Stakeholders And Technology — delivering
+            end-to-end digital excellence.
           </p>
         </div>
+      </div>
 
-        {/* ===== Slider Wrapper ===== */}
-        <div className="relative">
-
-          {/* Slider */}
+      {/* Cards */}
+      <div className="grid grid-cols-4 gap-[2px]">
+        {cards.map((card, i) => (
           <div
-            ref={sliderRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
+            key={card.num}
+            className="relative overflow-hidden p-9 px-8 group transition-all duration-200 cursor-default"
+            style={{
+              background: i === activeIdx ? "#1a1a1a" : "#141414",
+              border: `1px solid ${i === activeIdx ? "#e63030" : "#222"}`,
+            }}
           >
-            {competencies.map((item) => (
-              <div
-                key={item.id}
-                className="min-w-[85%] sm:min-w-[60%] md:min-w-[32%]
-                           bg-[#181818] border border-[#2A2A2A]
-                           p-8 relative"
-              >
-                {/* Map Background */}
-                <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
-                  <Image
-                    src="/about-map.png"
-                    alt="Map"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+            {/* Bottom red line */}
+            <div
+              className="absolute bottom-0 left-0 h-[2px] bg-[#e63030] transition-transform duration-300 origin-left"
+              style={{ width: "100%", transform: i === activeIdx ? "scaleX(1)" : "scaleX(0)" }}
+            />
 
-                <div className="relative z-10">
-                  <span className="text-gray-500 text-lg">
-                    {item.id}
-                  </span>
-
-                  <h3 className="mt-4 text-2xl md:text-3xl font-light">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-4 text-gray-400">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+            <div className="w-11 h-11 flex items-center justify-center mb-5 text-[18px] border border-red-500/20 bg-red-500/10">
+              {card.icon}
+            </div>
+            <span className="font-syne text-[11px] text-[#555] tracking-[2px] mb-3 block">
+              {card.num}
+            </span>
+            <h3 className="font-syne font-bold text-[17px] mb-3">{card.title}</h3>
+            <p className="text-[13px] text-[#888] leading-[1.7]">{card.description}</p>
           </div>
+        ))}
+      </div>
 
-          {/* ===== Arrows ===== */}
-          <div className="flex items-center gap-4 mt-10">
-
-            <button
-              onClick={() => scroll("left")}
-              className="w-12 h-12 border border-[#333] flex items-center justify-center
-                         hover:bg-[#222] transition"
-            >
-              <FaArrowLeft />
-            </button>
-
-            <button
-              onClick={() => scroll("right")}
-              className="w-12 h-12 bg-[#B42A2A] flex items-center justify-center
-                         hover:bg-[#9e2424] transition"
-            >
-              <FaArrowRight />
-            </button>
-
-          </div>
-
-        </div>
-
-        {/* ===== Hire Me Button ===== */}
-        <div className="flex justify-end mt-16">
+      {/* Controls */}
+      <div className="flex items-center gap-3 mt-9">
+        <button
+          onClick={handlePrev}
+          aria-label="Previous"
+          className="w-11 h-11 border border-[#222] flex items-center justify-center text-[#888] text-[16px] hover:border-[#e63030] hover:text-[#e63030] hover:bg-red-500/5 transition-all duration-200"
+        >
+          ←
+        </button>
+        <button
+          onClick={handleNext}
+          aria-label="Next"
+          className="w-11 h-11 border border-[#222] flex items-center justify-center text-[#888] text-[16px] hover:border-[#e63030] hover:text-[#e63030] hover:bg-red-500/5 transition-all duration-200"
+        >
+          →
+        </button>
+        <div className="ml-auto">
           <Link
-            href="/contact"
-            className="px-8 py-4 bg-[#B42A2A] hover:bg-[#9e2424] transition"
+            href="#contact"
+            className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] hover:-translate-y-[1px] transition-all duration-200 inline-block"
           >
             Hire Me
           </Link>
         </div>
-
       </div>
     </section>
   );

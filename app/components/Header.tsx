@@ -19,8 +19,8 @@ export default function Header() {
     setIsOpen(false);
   };
   return (
-    <header className="bg-[#222222] text-[#EEEEEE] fixed w-full z-50 shadow-md">
-      <div className="max-w-425 mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="bg-[#222222] text-[#EEEEEE] fixed w-screen z-50 shadow-md">
+      <div className="max-w-425 mx-auto px-6 3xl:px-0 py-4 flex items-center justify-between">
 
         {/* Left */}
         <div className="text-xl font-bold cursor-pointer" onClick={() => handleScroll("home")}>

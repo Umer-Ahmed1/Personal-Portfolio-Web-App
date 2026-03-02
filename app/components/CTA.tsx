@@ -1,56 +1,100 @@
-// components/CallToAction.tsx  or  components/HeroCTA.tsx
+'use client';
+
 import Link from 'next/link';
 import React from 'react';
+import { motion, Variants } from 'framer-motion';
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemFromLeft: Variants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+} satisfies Variants;
 
 export default function CallToAction() {
   return (
     <section
       className="
-        relative min-h-[80vh] md:min-h-[90vh] lg:min-h-screen
-        flex items-center justify-center
+        relative min-h-[70vh] md:min-h-[80vh] w-full
+        flex items-center justify-start
         bg-gray-950 text-white overflow-hidden
       "
     >
       {/* Background Image with overlay */}
       <div className="absolute inset-0 z-0">
         <div
-          className="
-            absolute inset-0 bg-cover bg-center bg-no-repeat
-            brightness-[0.45] contrast-[1.15]
-          "
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/contact-bg.png')",
           }}
         />
-        {/* Optional subtle gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/30 to-black/60" />
+        {/* Dark overlay to ensure text readability on mobile */}
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 lg:px-12 text-center">
-        <div className="space-y-6 md:space-y-8 lg:space-y-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+
+      <motion.div
+        className="relative z-10 w-full max-w-425 mx-auto px-6 3xl:px-0 "
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <div className="max-w-4xl space-y-6 md:space-y-8 text-left">
+          {/* Heading */}
+          <motion.h1
+            variants={itemFromLeft}
+            className="
+              text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+              font-extrabold tracking-tight leading-[1.1]
+            "
+          >
             Ready to Transform Your
             <br className="hidden sm:block" />
             Vision into Reality?
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90 max-w-4xl mx-auto leading-relaxed">
-            Let’s combine high-end design, scalable development, and precision
+          {/* Subtitle */}
+          <motion.p
+            variants={itemFromLeft}
+            className="
+              text-lg sm:text-xl md:text-2xl font-medium
+              text-white/90 leading-relaxed max-w-2xl
+            "
+          >
+            Let&apos;s combine high-end design, scalable development, and precision
             <br className="hidden md:block" />
             management to build your next digital success story.
-          </p>
+          </motion.p>
 
-          <div className="pt-6 md:pt-10 flex flex-col sm:flex-row gap-5 justify-center items-center">
+          {/* Buttons */}
+          <motion.div
+            variants={itemFromLeft}
+            className="pt-4 md:pt-10 flex flex-col sm:flex-row gap-4 md:gap-6"
+          >
             <Link
               href="/start-project"
               className="
                 inline-flex items-center justify-center
-                px-10 py-5 text-lg font-semibold
-                bg-red-600 hover:bg-red-700
-                text-white rounded-lg
-                transition-all duration-300 shadow-lg hover:shadow-red-900/30
-                min-w-55
+                px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold
+                bg-[#b42a2a] hover:bg-[#9a2323]
+                text-white transition-all duration-300
+                w-full sm:w-auto sm:min-w-[220px]
               "
             >
               Start A Project
@@ -60,19 +104,18 @@ export default function CallToAction() {
               href="/book-strategy-call"
               className="
                 inline-flex items-center justify-center
-                px-10 py-5 text-lg font-semibold
+                px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold
                 border-2 border-white/40 hover:border-white/70
-                text-white rounded-lg
-                backdrop-blur-sm bg-white/5 hover:bg-white/10
+                text-white hover:bg-white/10
                 transition-all duration-300
-                min-w-55
+                w-full sm:w-auto sm:min-w-[220px]
               "
             >
               Book A Strategy Call
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

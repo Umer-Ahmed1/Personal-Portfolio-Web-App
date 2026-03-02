@@ -3,6 +3,8 @@ import Experience from "./components/Experience";
 import AboutSection from "./components/About";
 import CTASection from "./components/CTA";
 import CoreCompetencies from "./components/Core";
+import Testimonials from "./components/Testimonial";
+import CaseStudies from "./components/CaseStudies";
 
 export default function HomePage() {
   return (
@@ -11,6 +13,8 @@ export default function HomePage() {
     <Experience />
     <AboutSection />
     <CoreCompetencies />
+    <CaseStudies />
+    <Testimonials />
     <CTASection />
     </>
   );

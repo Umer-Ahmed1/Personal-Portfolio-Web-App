@@ -10,7 +10,7 @@ export default function AboutSection() {
       className="relative bg-[#060606] text-[#EEEEEE] overflow-hidden w-full"
     >
       {/* ===== MAP BACKGROUND (Top Right) ===== */}
-      <div className="absolute top-0 right-0 w-[60%] h-[60%] pointer-events-none opacity-90">
+      <div className="absolute top-0 right-0 w-[60%] h-[60%] pointer-events-none opacity-90 ">
         <Image
           src="/about-map.png"
           alt="World Map"
@@ -26,7 +26,7 @@ export default function AboutSection() {
                       opacity-10 blur-[100px]" />
 
       {/* ===== CONTENT ===== */}
-      <div className="relative z-10 mx-auto px-6 md:px-12 py-20 md:py-32">
+      <div className="relative z-10 max-w-425 mx-auto px-6 3xl:px-0 py-20 md:py-32">
 
         <span className="inline-block border border-[#333] px-4 py-1 text-sm text-gray-400 mb-8">
           About Me
@@ -36,7 +36,7 @@ export default function AboutSection() {
           A Strategic Digital Architect
         </h2>
 
-        <p className="mt-10 text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl">
+        <p className="mt-10 text-lg md:text-xl leading-relaxed max-w-3xl">
           I don't just build websites; I build solutions. With a unique
           background spanning Design, Development, and Project Management,
           I provide a holistic approach to every product. My goal is to

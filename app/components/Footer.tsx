@@ -1,123 +1,129 @@
 // components/Footer.tsx
+'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+} as const;
 
 export default function Footer() {
   return (
-      <footer className="bg-[#222222] text-[#EEEEEE] w-full z-50 shadow-md">
-      <div className="max-w-425 mx-auto px-6 py-16 flex items-center justify-between">
-          {/* Brand + Social */}
-          <div className="space-y-22">
-            <h2 className="text-3xl md:text-4xl font- text-white tracking-tight">
+    <footer className="bg-[#222222] text-white w-screen">
+      <div className="max-w-425 mx-auto px-6 md:px-8 lg:px-12">
+        <motion.div
+          className="py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 lg:gap-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
+        >
+          {/* Column 1: Name + Socials */}
+          <motion.div variants={fadeInUp} className="space-y-8 justify-around flex flex-col">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Umer Ahmed
             </h2>
 
-            <div className="flex gap-5 ">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
-              >
-                <FaFacebookF size={18} />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
-              >
-                <FaInstagram size={18} />
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="text-gray-100 hover:text-white border border-gray-100 rounded-full p-2 hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200"
-              >
-                <FaLinkedinIn size={18} />
-              </a>
+            <div className="flex justify-around max-w-45 mx-0">
+              <SocialIcon href="#" icon={<FaFacebookF size={20} />} label="Facebook" />
+              <SocialIcon href="#" icon={<FaInstagram size={20} />} label="Instagram" />
+              <SocialIcon href="#" icon={<FaLinkedinIn size={20} />} label="LinkedIn" />
             </div>
-          </div>
+          </motion.div>
 
-          {/* About / Navigation */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-5">About</h3>
-            <ul className="space-y-3 text-gray-400">
+          {/* Column 2: About */}
+          <motion.div variants={fadeInUp}>
+            <h3 className="text-xl font-semibold mb-6">About</h3>
+            <ul className="space-y-3 text-gray-300">
+              <li><FooterLink href="#">Home</FooterLink></li>
+              <li><FooterLink href="#">About Me</FooterLink></li>
+              <li><FooterLink href="#">Explore My Portfolio</FooterLink></li>
+              <li><FooterLink href="#">Project Management Portal</FooterLink></li>
+              <li><FooterLink href="#">Contact</FooterLink></li>
+            </ul>
+          </motion.div>
+
+          {/* Column 3: Services */}
+          <motion.div variants={fadeInUp}>
+            <h3 className="text-xl font-semibold mb-6">Services</h3>
+            <ul className="space-y-3 text-gray-300">
+              <li>UX/UI Design</li>
+              <li>Full-Stack Development</li>
+              <li>Project Management</li>
+              <li>Systems Architecture</li>
+            </ul>
+          </motion.div>
+
+          {/* Column 4: Contact */}
+          <motion.div variants={fadeInUp}>
+            <h3 className="text-xl font-semibold mb-6">Contact</h3>
+            <ul className="space-y-3 text-gray-300">
+              <li>+92-301 824 2245</li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  About Me
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Explore My Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Project Management Portal
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Contact
+                <a
+                  href="mailto:umerahmedwork4@gmail.com"
+                  className="hover:text-[#b42a2a] transition-colors wrap-break-word"
+                >
+                  umerahmedwork4@gmail.com
                 </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
+        </motion.div>
 
-          {/* Services + Contact */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-10 md:gap-8">
-            {/* Services */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-5">Services</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li>UX/UI Design</li>
-                <li>Full-Stack Development</li>
-                <li>Project Management</li>
-                <li>Systems Architecture</li>
-              </ul>
-            </div>
-                  </div>
+        {/* Divider – matches content width */}
+        <div className="border-t border-gray-700" />
 
-            {/* Contact */}
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-5">Contact</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li>+92-301 824 2245</li>
-                <li>
-                  <a
-                    href="mailto:umerahmedwork4@gmail.com"
-                    className="hover:text-white transition-colors"
-                  >
-                    umerahmedwork4@gmail.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+        {/* Bottom bar */}
+        <div className="py-6 text-sm  flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             © {new Date().getFullYear()} Umer Ahmed. All Rights Reserved.
           </div>
-          <div className="flex gap-6 mt-4 sm:mt-0">
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              Terms
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              Cookies
-            </a>
+          <div className="flex gap-6">
+            <FooterLink href="#">Terms</FooterLink>
+            <FooterLink href="#">Privacy</FooterLink>
+            <FooterLink href="#">Cookies</FooterLink>
           </div>
         </div>
       </div>
-    </footer>);
+    </footer>
+  );
+}
+
+// Reusable components
+function SocialIcon({
+  href,
+  icon,
+  label,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      className="text-white border border-white rounded-full hover:bg-[#b42a2a] hover:border-[#b42a2a] transition-colors duration-200 p-2"
+    >
+      {icon}
+    </a>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a href={href} className="hover:text-[#b42a2a] transition-colors">
+      {children}
+    </a>
+  );
 }
