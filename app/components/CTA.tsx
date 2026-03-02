@@ -36,7 +36,6 @@ export default function CallToAction() {
         bg-gray-950 text-white overflow-hidden
       "
     >
-      {/* Background Image with overlay */}
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -44,7 +43,6 @@ export default function CallToAction() {
             backgroundImage: "url('/contact-bg.png')",
           }}
         />
-        {/* Dark overlay to ensure text readability on mobile */}
       </div>
 
 

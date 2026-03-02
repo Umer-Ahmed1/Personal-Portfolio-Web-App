@@ -13,7 +13,6 @@ export default function Hero() {
 
         {/* ================= LEFT CONTENT ================= */}
         <div className="flex flex-col justify-center px-6 md:px-16 lg:px-24 py-20 md:py-0 order-2 md:order-1">
-          
           <h1 className="text-4xl md:text-6xl lg:text-7xl leading-tight font-light">
             I bridge the gap <br />
             between Vision <br />
