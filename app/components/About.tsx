@@ -7,10 +7,10 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative bg-[#060606] text-[#EEEEEE] overflow-hidden w-full"
+      className="relative bg-[#222222] text-[#EEEEEE] overflow-hidden w-full min-h-screen"
     >
       {/* ===== MAP BACKGROUND (Top Right) ===== */}
-      <div className="absolute top-0 right-0 w-[60%] h-[60%] pointer-events-none opacity-90 ">
+      <div className="absolute top-0 right-0 w-full h-full pointer-events-none ">
         <Image
           src="/about-map.png"
           alt="World Map"
@@ -21,9 +21,9 @@ export default function AboutSection() {
       </div>
 
       {/* ===== GRADIENT ELLIPSE (Bottom Right) ===== */}
-      <div className="absolute -bottom-75 -right-50 w-225 h-225 rounded-full pointer-events-none
+      {/* <div className="absolute -bottom-75 -right-50 w-225 h-225 rounded-full pointer-events-none
                       bg-[radial-gradient(ellipse_at_center,#B42A2A_30%,#060606_90%)] 
-                      opacity-10 blur-[100px]" />
+                      opacity-10 blur-[100px]" /> */}
 
       {/* ===== CONTENT ===== */}
       <div className="relative z-10 max-w-425 mx-auto px-6 3xl:px-0 py-20 md:py-32">

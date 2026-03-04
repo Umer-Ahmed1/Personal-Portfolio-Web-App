@@ -53,7 +53,7 @@ export default function Competencies() {
     <section
       id="competencies"
       ref={ref}
-      className={`px-[60px] py-[80px] border-t border-[#222] overflow-hidden reveal ${isVisible ? "visible" : ""}`}
+      className={`px-[60px] py-[80px] border-t border-[#222] overflow-hidden bg-[#282828] reveal ${isVisible ? "visible" : ""}`}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-12">
@@ -61,9 +61,8 @@ export default function Competencies() {
           Core Competencies
         </h2>
         <div className="max-w-[280px] text-right">
-          <p className="text-[13px] text-[#888] leading-[1.7]">
-            I Bridge The Gap Between Stakeholders And Technology — delivering
-            end-to-end digital excellence.
+          <p className="text-[13px] text-white ">
+            I Bridge The Gap Between Stakeholders And Technology 
           </p>
         </div>
       </div>
