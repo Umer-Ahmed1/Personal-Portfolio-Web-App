@@ -39,7 +39,7 @@ export default function Header() {
             About
           </button>
 
-          <Link href="/portfolio" className="hover:text-[#B42A2A] transition cursor-pointer">
+          <Link href="/explore" className="hover:text-[#B42A2A] transition cursor-pointer">
             Explore My Portfolio
           </Link>
 
@@ -77,7 +77,7 @@ export default function Header() {
           <button onClick={() => handleScroll("home")}>Home</button>
           <button onClick={() => handleScroll("about")}>About</button>
 
-          <Link href="/portfolio" onClick={() => setIsOpen(false)}>
+          <Link href="/explore" onClick={() => setIsOpen(false)}>
             Explore My Portfolio
           </Link>
 

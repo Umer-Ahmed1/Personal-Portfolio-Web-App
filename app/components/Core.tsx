@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
@@ -43,21 +43,22 @@ const cards: CompetencyCard[] = [
   },
 ];
 
-/* ── how many cards visible at once (desktop shows ~3.4) ── */
 const CARD_WIDTH = 400; // px
 const GAP = 16;         // px
+const TOTAL_TRACK = cards.length * CARD_WIDTH + (cards.length - 1) * GAP;
 
-/* ── section fade-up ── */
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+/* ── variants ── */
 const sectionVariants = {
   hidden: { opacity: 0, y: 48 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+    transition: { duration: 0.8, ease: EASE },
   },
 };
 
-/* ── stagger children ── */
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
@@ -68,7 +69,7 @@ const cardEntry = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+    transition: { duration: 0.7, ease: EASE },
   },
 };
 
@@ -76,14 +77,37 @@ export default function Competencies() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
+  /* measure the shared content container to know the right boundary */
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setContainerWidth(entry.contentRect.width);
+    });
+    ro.observe(el);
+    setContainerWidth(el.getBoundingClientRect().width);
+    return () => ro.disconnect();
+  }, []);
+
   const [activeIdx, setActiveIdx] = useState(0);
   const maxIdx = cards.length - 1;
 
   const handlePrev = () => setActiveIdx((i) => Math.max(0, i - 1));
   const handleNext = () => setActiveIdx((i) => Math.min(maxIdx, i + 1));
 
-  /* translate the track: each step moves one card width + gap */
-  const trackX = -(activeIdx * (CARD_WIDTH + GAP));
+  /*
+   * Step size distributes the total overflow so that:
+   *   activeIdx = 0       → trackX = 0
+   *                            first card left-edge = container left-edge ✓
+   *   activeIdx = maxIdx  → trackX = -(TOTAL_TRACK - containerWidth)
+   *                            last card right-edge = container right-edge ✓
+   */
+  const maxOffset = Math.max(0, TOTAL_TRACK - containerWidth);
+  const stepSize  = maxIdx > 0 ? maxOffset / maxIdx : 0;
+  const trackX    = -(activeIdx * stepSize);
 
   return (
     <motion.section
@@ -92,35 +116,44 @@ export default function Competencies() {
       variants={sectionVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="relative py-[80px] border-t border-[#222] bg-[#282828] overflow-hidden min-w-425"
+      /* full-width bg; NO overflow-hidden so cards can bleed off screen */
+      className="relative py-[80px] border-t border-[#222] bg-[#282828]"
     >
-      {/* ── HEADER ── */}
-      <div className="flex items-start justify-between mb-12 px-[60px]">
-        <motion.h2
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number,number,number,number], delay: 0.1 }}
-          className="font-syne font-extrabold tracking-[-0.5px] text-[clamp(28px,3.5vw,44px)] text-white"
-        >
-          Core Competencies
-        </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number,number,number,number], delay: 0.2 }}
-          className="max-w-[280px] text-right"
-        >
-          <p className="text-[13px] text-white leading-relaxed">
-            I Bridge The Gap Between
-            <br />
-            Stakeholders And Technology
-          </p>
-        </motion.div>
+      {/* ══ HEADER — same max-w / padding as About ══ */}
+      <div ref={containerRef} className="max-w-425 mx-auto px-6 3xl:px-0">
+        <div className="flex items-start justify-between mb-12">
+          <motion.h2
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+            className="font-syne font-extrabold tracking-[-0.5px] text-[clamp(28px,3.5vw,44px)] text-white"
+          >
+            Core Competencies
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+            className="max-w-[280px] text-right"
+          >
+            <p className="text-[13px] text-white leading-relaxed">
+              I Bridge The Gap Between
+              <br />
+              Stakeholders And Technology
+            </p>
+          </motion.div>
+        </div>
       </div>
 
-      {/* ── SLIDER TRACK (overflow visible so cards bleed off-screen) ── */}
-      <div className="pl-[60px] overflow-visible">
+
+      {/* ══ SLIDER
+          Left edge is pinned to the content-container left edge via the same
+          max-w + px-6 wrapper (overflow: visible, so cards bleed right).
+          The section has no overflow-hidden → cards bleed off-screen too.
+      ══ */}
+      <div className="max-w-425 mx-auto px-6 3xl:px-0 overflow-visible">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -128,10 +161,9 @@ export default function Competencies() {
           style={{ width: "max-content" }}
         >
           <motion.div
-            className="flex gap-4"
+            style={{ display: "flex", gap: `${GAP}px`, width: "max-content" }}
             animate={{ x: trackX }}
             transition={{ type: "spring", stiffness: 300, damping: 34, mass: 0.8 }}
-            style={{ width: "max-content" }}
           >
             {cards.map((card, i) => (
               <motion.div
@@ -140,43 +172,40 @@ export default function Competencies() {
                 className="relative flex-shrink-0 flex flex-col"
                 style={{
                   width: `${CARD_WIDTH}px`,
-                  aspectRatio: "1.3 / 1",
+                  aspectRatio: "1.2 / 1",
                   background: "#1c1c1c",
                   border: `1px solid ${i === activeIdx ? "rgba(230,48,48,0.6)" : "#2a2a2a"}`,
                   overflow: "hidden",
                   transition: "border-color 0.3s ease",
                 }}
               >
-                {/* ── MAP BACKGROUND — dotted world map pattern ── */}
+                {/* Map bg */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    backgroundImage: `url('/about-map.png')`,
-                    backgroundSize: "250px ",
-                    backgroundPosition: "right 40px top 0px",
+                    backgroundImage: "url('/about-map.png')",
+                    backgroundSize: "250px",
+                    backgroundPosition: "right 20px top 0px",
                     backgroundRepeat: "no-repeat",
                     opacity: 0.9,
                     filter: "grayscale(1)",
                   }}
                 />
-                             
 
-                {/* ── CARD CONTENT ── */}
+                {/* Card content */}
                 <div className="relative z-10 flex flex-col h-full p-8">
                   {/* Icon top-left */}
-                  <div className="mb-auto">
-                    <div className="w-10 h-10 relative">
-                      <Image
-                        src={card.image}
-                        alt={card.title}
-                        fill
-                        className="object-contain"
-                        sizes="40px"
-                      />
-                    </div>
+                  <div className="w-10 h-10 relative mb-auto">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      className="object-contain"
+                      sizes="40px"
+                    />
                   </div>
 
-                  {/* Bottom content */}
+                  {/* Text bottom */}
                   <div className="mt-8">
                     <span className="font-syne text-[11px] text-[#555] tracking-[2px] block mb-3">
                       {card.num}
@@ -190,21 +219,30 @@ export default function Competencies() {
                   </div>
                 </div>
 
-                
+                {/* Active bottom line */}
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-[#e63030]"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: i === activeIdx ? 1 : 0 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  style={{ width: "100%", transformOrigin: "left" }}
+                />
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* ── CONTROLS ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
-        className="flex items-center gap-3 mt-10 px-[60px]"
-      >
-        {/* Left arrow — outlined circle */}
+
+      {/* ══ CONTROLS — same max-w / padding as About ══ */}
+      <div className="max-w-425 mx-auto px-6 3xl:px-0">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5, ease: EASE }}
+          className="flex items-center gap-3 mt-10"
+        >
+         {/* Left arrow — outlined circle */}
         <motion.button
           onClick={handlePrev}
           disabled={activeIdx === 0}
@@ -232,21 +270,23 @@ export default function Competencies() {
           <img src="/right.png" alt="Next" width={18} height={18} />
         </motion.button>
 
-        <div className="ml-auto">
-          <motion.div
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-            <Link
-              href="#contact"
-              className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] transition-all duration-200 inline-block"
+          <div className="ml-auto">
+            <motion.div
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              Hire Me
-            </Link>
-          </motion.div>
-        </div>
-      </motion.div>
+              <Link
+                href="#contact"
+                className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] transition-all duration-200 inline-block"
+              >
+                Hire Me
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
     </motion.section>
   );
 }
