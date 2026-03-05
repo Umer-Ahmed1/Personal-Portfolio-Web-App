@@ -3,6 +3,7 @@
 import Link from "next/link";
 import MockUI from "@/app/components/MockUI";
 import { useReveal } from "@/app/hooks/useReveal";
+import Image from "next/image";
 
 interface CaseStudy {
   type: string;
@@ -13,11 +14,13 @@ interface CaseStudy {
   mockBlocks?: { style?: React.CSSProperties }[];
   mockLayout?: "sidebar" | "full";
   mockAccentIndex?: number;
+  image: string;
 }
 
 const caseStudies: CaseStudy[] = [
   {
     type: "UI/UX · Web Application",
+    image: "/reelstacks.png",
     title: "Social Media Application & Website",
     description:
       "Built a social mobile and web application that leverages one-tap sharing and multi-platform compatibility to solve the problem of fragmented content saving.",
@@ -28,6 +31,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     type: "Development & Design",
+    image: "/focusedcaretherapeuticmassage.png",
     title: "Website Redesign & Integrated Booking Solution",
     description:
       "A complete design and development project focused on brand identity and the implementation of a high-conversion online scheduling feature.",
@@ -42,6 +46,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     type: "Full Stack Solution",
+    image: "/turnbyturn.png",
     title: "Driving School Portal",
     description:
       "Designed and engineered a robust educational portal that integrates automated registration, secure sign-up logic, and a self-paced online classroom module.",
@@ -59,13 +64,17 @@ const caseStudies: CaseStudy[] = [
 function CaseCard({ cs }: { cs: CaseStudy }) {
   return (
     <div
-      className={`bg-[#141414] border border-[#222] overflow-hidden hover:border-[#333] hover:-translate-y-[3px] transition-all duration-200 cursor-pointer ${cs.featured ? "row-span-2 flex flex-col" : ""}`}
+      className={` overflow-hidden transition-all duration-200 cursor-pointer ${cs.featured ? "row-span-2 flex flex-col" : ""}`}
     >
-      <MockUI
-        layout={cs.mockLayout}
-        blocks={cs.mockBlocks}
-        accentIndex={cs.mockAccentIndex}
-      />
+      <div className="w-full aspect-video relative overflow-hidden">
+ <div>
+       <Image
+  src={cs.image}
+  alt={cs.title}
+  fill
+  className="object-cover transition-transform duration-300 hover:scale-105"
+/>
+</div>      </div>
       <div className="p-7 px-8 flex-1">
         <span className="text-[10px] font-semibold tracking-[2.5px] uppercase text-[#e63030] mb-2.5 block">
           {cs.type}
@@ -100,10 +109,8 @@ export default function CaseStudies() {
       className={`px-[60px] py-[100px] border-t border-[#222] reveal ${isVisible ? "visible" : ""}`}
     >
       {/* Header */}
-      <div className="mb-14">
-        <span className="text-[11px] font-semibold tracking-[3px] uppercase text-[#888] block mb-5">
-          Work
-        </span>
+      <div className="mb-14 ">
+       
         <h2 className="font-syne font-extrabold leading-[1.1] tracking-[-0.5px] mb-3 text-[clamp(32px,4vw,52px)]">
           Selected case
           <br />

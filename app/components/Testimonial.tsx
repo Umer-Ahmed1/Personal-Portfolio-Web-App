@@ -94,7 +94,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       ref={ref}
-      className={`px-[60px] py-[100px] border-t border-[#222] reveal ${isVisible ? "visible" : ""}`}
+      className={`px-[60px] py-[100px] bg-[#282828] border-t border-[#222] reveal ${isVisible ? "visible" : ""}`}
     >
       {/* Header */}
       <div className="mb-[52px]">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/Header";
-import { Michroma } from "next/font/google";
+import { Michroma, DM_Sans } from "next/font/google";
 import SmoothScroll from "@/app/components/SmoothScroll";
 import Footer from "./components/Footer";
 
@@ -10,6 +10,11 @@ import Footer from "./components/Footer";
 const michroma = Michroma({
   subsets: ["latin"],
   weight: "400",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
