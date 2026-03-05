@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +92,21 @@ export default function Header() {
           >
             Contact
           </Link>
+<div className="flex gap-6 pt-4">
 
+  <Link href="#" className="text-xl">
+    <FaFacebookF />
+  </Link>
+
+  <Link href="#" className="text-xl">
+    <FaInstagram />
+  </Link>
+
+  <Link href="#" className="text-xl">
+    <FaLinkedinIn />
+  </Link>
+
+</div>
         </div>
       </div>
     </header>
