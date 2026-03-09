@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import RotatingText from './Rotating';
 
 export default function Hero() {
   return (
@@ -23,7 +24,7 @@ export default function Hero() {
       </div>
 
       {/* ================= SOCIAL ICONS (DESKTOP) ================= */}
-      <div className="hidden md:flex flex-col items-center gap-6 fixed right-6 top-1/2 -translate-y-1/2 z-40">
+      {/* <div className="hidden md:flex flex-col items-center gap-6 fixed right-6 top-1/2 -translate-y-1/2 z-40">
         <Link
           href="#"
           className="text-gray-300 hover:text-[#B42A2A] transition"
@@ -44,7 +45,7 @@ export default function Hero() {
         >
           <FaLinkedinIn size={16} />
         </Link>
-      </div>
+      </div> */}
 
       <div className="grid md:grid-cols-2 min-h-screen">
 
@@ -61,11 +62,30 @@ export default function Hero() {
             and Execution.
           </h1>
 
-          <p className="mt-8 text-lg text-gray-300 max-w-xl">
-            I’m Umer Ahmed—a Designer, Developer, and Project Manager.
-            I build scalable digital systems where seamless user experience
-            meets technical precision and crystal-clear communication.
-          </p>
+         <p className="mt-8 text-xl text-gray-300 max-w-xl">
+  {/* Line 1: name + rotating text side by side */}
+  <span className="flex items-center gap-2 flex-wrap">
+    <span>I'm Umer Ahmed</span>
+    <RotatingText
+      texts={['A Designer', 'A Developer', 'A Project Manager!']}
+      mainClassName="px-2 sm:px-2 md:px-3 bg-[#B42A2A] text-white overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-2xl"
+      staggerFrom={"last"}
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-120%" }}
+      staggerDuration={0.025}
+      splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+      transition={{ type: "spring", damping: 30, stiffness: 700 }}
+      rotationInterval={3000}
+    />
+  </span>
+
+  {/* Line 2: rest of paragraph */}
+  <span className="block mt-2">
+    I build scalable digital systems where seamless user experience
+    meets technical precision and crystal-clear communication.
+  </span>
+</p>
 
           {/* Buttons */}
           <motion.div
@@ -74,6 +94,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="flex flex-wrap gap-6 mt-10"
           >
+            
             <Link
               href="/portfolio"
               className="px-8 py-4 bg-[#B42A2A] text-[#eeeeee] font-medium transition duration-300 hover:opacity-80"

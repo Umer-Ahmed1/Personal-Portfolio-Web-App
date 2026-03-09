@@ -58,3 +58,41 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #666666 #222222;
 }
+
+/* Hide horizontal scrollbar, style vertical scrollbar */
+html {
+  overflow-x: hidden;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 0px; /* hides horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #222222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B42A2A;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9f2424;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B42A2A #222222;
+}
+
+/* * {
+  cursor: url('/cursor.png') 4 4, auto;
+}
+
+.about{
+    cursor: url('/about-cursor.png') 4 4, auto !important;
+} */

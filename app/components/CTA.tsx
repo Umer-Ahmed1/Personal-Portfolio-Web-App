@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import React from 'react';
 import { motion, Variants } from 'framer-motion';
+import TrueFocus from './Focus';
 
 const container = {
   hidden: { opacity: 0 },
@@ -64,6 +64,7 @@ export default function CallToAction() {
           >
             Ready to Transform Your
             <br className="hidden sm:block" />
+            
             Vision into Reality?
           </motion.h1>
 

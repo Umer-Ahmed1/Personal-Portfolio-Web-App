@@ -9,6 +9,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import ScrollReveal from './Reveal';
 
 /* ── ease curves typed as tuples to satisfy Framer Motion's Easing type ── */
 const EASE_OUT_EXPO = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -21,14 +22,6 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: EASE_OUT_EXPO, delay },
-  }),
-};
-
-const revealLine = {
-  hidden: { scaleX: 0 },
-  visible: (delay = 0) => ({
-    scaleX: 1,
-    transition: { duration: 0.9, ease: EASE_OUT_EXPO, delay },
   }),
 };
 
@@ -100,7 +93,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative bg-[#222222] text-[#EEEEEE] overflow-hidden w-full"
+      className="relative bg-[#222222] text-[#EEEEEE] overflow-hidden w-full about"
     >
       {/* ── MAP — parallax drift ── */}
       <motion.div
@@ -159,11 +152,20 @@ export default function AboutSection() {
           custom={0.35}
           className="mt-10 text-lg md:text-xl leading-relaxed max-w-3xl text-[#CCCCCC]"
         >
-          I don&apos;t just build websites; I build solutions. With a unique
-          background spanning Design, Development, and Project Management,
-          I provide a holistic approach to every product. My goal is to
-          eliminate the friction between a business idea and its technical
-          reality through clean code and fluent, error-free communication.
+<ScrollReveal
+  baseOpacity={0.2}
+  enableBlur
+  baseRotation={2.5}
+  blurStrength={5}
+  wordAnimationEnd = 'center center'
+rotationEnd = 'center center'
+>
+  I don&apos;t just build websites; I build solutions. With a unique
+  background spanning Design, Development, and Project Management,
+  I provide a holistic approach to every product. My goal is to
+  eliminate the friction between a business idea and its technical
+  reality through clean code and fluent, error-free communication.
+</ScrollReveal>
         </motion.p>
 
         {/* CTA Button — fade up + magnetic hover */}

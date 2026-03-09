@@ -14,7 +14,7 @@ export default function HomePage() {
     <AboutSection />
     <CoreCompetencies />
     <CaseStudies />
-    {/* <Testimonials /> */}
+    <Testimonials />
     <CTASection />
     </>
   );

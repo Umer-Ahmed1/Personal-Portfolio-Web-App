@@ -35,12 +35,7 @@ const testimonials: Testimonial[] = [
     role: "Product Lead to Stellar",
     initials: "QT",
   },
-  {
-    text: '"Technical precision. His ability to translate complex business requirements into clean, scalable code is unmatched. Umer makes the most difficult technical hurdles look easy."',
-    name: "Qarim T.",
-    role: "Product Lead to Stellar",
-    initials: "QT",
-  },
+
 ];
 
 function TestimonialCard({ t }: { t: Testimonial }) {
