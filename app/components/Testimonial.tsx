@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useReveal } from "@/app/hooks/useReveal";
+import EmblaCarousel from './EmblaCarousel'
+import { EmblaOptionsType } from 'embla-carousel'
 
 interface Testimonial {
   text: string;
@@ -9,6 +11,9 @@ interface Testimonial {
   role: string;
   initials: string;
 }
+const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
+const SLIDE_COUNT = 5
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 const testimonials: Testimonial[] = [
   {
@@ -103,9 +108,8 @@ export default function Testimonials() {
 
       {/* Grid */}
       <div className="grid grid-cols-3 gap-[2px]">
-        {testimonials.map((t) => (
-          <TestimonialCard key={t.name} t={t} />
-        ))}
+           <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+
       </div>
 
       {/* Controls */}

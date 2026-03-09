@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
+    "embla-carousel": "^9.0.0-rc01",
+    "embla-carousel-autoplay": "^9.0.0-rc01",
+    "embla-carousel-react": "^9.0.0-rc01",
     "framer-motion": "^12.34.3",
     "gsap": "^3.14.2",
     "motion": "^12.35.1",
@@ -17,10 +20,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
-    "swiper": "^12.1.2",
-    "embla-carousel-react": "9.0.0-rc01",
-		"embla-carousel": "9.0.0-rc01",
-		"embla-carousel-autoplay": "9.0.0-rc01"
+    "swiper": "^12.1.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
