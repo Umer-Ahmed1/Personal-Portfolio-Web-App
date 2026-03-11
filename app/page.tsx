@@ -12,9 +12,9 @@ export default function HomePage() {
     <Hero />
     <Experience />
     <AboutSection />
-    <CoreCompetencies />
+    {/* <CoreCompetencies /> */}
     <CaseStudies />
-    <Testimonials />
+    {/* <Testimonials /> */}
     <CTASection />
     </>
   );

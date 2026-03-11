@@ -52,7 +52,6 @@ const CardNav: React.FC<CardNavProps> = ({
   const router = useRouter();
 
   const handleLinkClick = (href: string) => {
-    // Close the menu
     setIsHamburgerOpen(false);
     if (tlRef.current) {
       tlRef.current.eventCallback("onReverseComplete", () =>
@@ -62,13 +61,11 @@ const CardNav: React.FC<CardNavProps> = ({
     }
 
     if (href.startsWith("#")) {
-      // Hash scroll — works on current page
       const id = href.slice(1);
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       } else {
-        // Navigate to home with hash
         router.push(`/${href}`);
       }
     } else if (href.startsWith("http") || href.startsWith("mailto")) {
@@ -84,34 +81,35 @@ const CardNav: React.FC<CardNavProps> = ({
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-      const contentEl = navEl.querySelector(
-        ".card-nav-content"
-      ) as HTMLElement;
+      const contentEl = navEl.querySelector(".card-nav-content") as HTMLElement;
       if (contentEl) {
-        const wasVisible = contentEl.style.visibility;
-        const wasPointerEvents = contentEl.style.pointerEvents;
-        const wasPosition = contentEl.style.position;
-        const wasHeight = contentEl.style.height;
+        // Temporarily make visible to measure
+        const prev = {
+          visibility: contentEl.style.visibility,
+          pointerEvents: contentEl.style.pointerEvents,
+          position: contentEl.style.position,
+          height: contentEl.style.height,
+        };
 
         contentEl.style.visibility = "visible";
         contentEl.style.pointerEvents = "auto";
         contentEl.style.position = "static";
         contentEl.style.height = "auto";
 
+        // Force reflow
         contentEl.offsetHeight;
 
         const topBar = 60;
         const padding = 16;
         const contentHeight = contentEl.scrollHeight;
 
-        contentEl.style.visibility = wasVisible;
-        contentEl.style.pointerEvents = wasPointerEvents;
-        contentEl.style.position = wasPosition;
-        contentEl.style.height = wasHeight;
+        // Restore
+        Object.assign(contentEl.style, prev);
 
         return topBar + contentHeight + padding;
       }
     }
+    // Desktop: fixed height
     return 260;
   };
 
@@ -123,7 +121,6 @@ const CardNav: React.FC<CardNavProps> = ({
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
-
     tl.to(navEl, { height: calculateHeight, duration: 0.4, ease });
     tl.to(
       cardsRef.current,
@@ -179,82 +176,93 @@ const CardNav: React.FC<CardNavProps> = ({
     }
   };
 
-  const setCardRef =
-    (i: number) => (el: HTMLDivElement | null) => {
-      if (el) cardsRef.current[i] = el;
-    };
+  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
+    if (el) cardsRef.current[i] = el;
+  };
 
   return (
+    /*
+      KEY FIX: removed `absolute left-1/2 -translate-x-1/2`
+      The wrapper is now a normal block inside the fixed Header.
+      Width is controlled by the Header's own padding, so it never
+      bleeds beyond the viewport edges on any screen size.
+    */
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+      className={`card-nav-container w-full flex justify-center px-4 sm:px-6 md:px-8 ${className}`}
     >
+      {/*
+        w-full + max-w-[800px] + the parent's horizontal padding = pill always
+        stays inside the viewport at every screen width, including sub-520px.
+      */}
       <nav
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
-        style={{ backgroundColor: baseColor }}
+        } w-full max-w-[800px] block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
+        style={{ backgroundColor: baseColor, maxWidth: 'min(800px, calc(100vw - 32px))' }}
       >
-        {/* Top bar */}
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-          {/* Hamburger */}
+        {/* ── Top bar ── */}
+        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-3 sm:px-4 z-[2]">
+          
+          {/* Logo — always visible, centered on desktop via absolute positioning */}
           <div
-            className={`hamburger-menu ${
-              isHamburgerOpen ? "open" : ""
-            } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
-            onClick={toggleMenu}
-            role="button"
-            aria-label={isExpanded ? "Close menu" : "Open menu"}
-            tabIndex={0}
-            style={{ color: menuColor || "#000" }}
-          >
-            <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
-              } group-hover:opacity-75`}
-            />
-            <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
-              } group-hover:opacity-75`}
-            />
-          </div>
-
-          {/* Logo / Name */}
-          <div
-            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none cursor-pointer font-bold tracking-wide"
+            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 cursor-pointer font-bold tracking-wide text-xs sm:text-sm md:text-base truncate"
             style={{ color: menuColor || "#fff" }}
             onClick={() => handleLinkClick("#home")}
           >
             UMER AHMED
           </div>
 
-          {/* CTA */}
+          {/* Hamburger — right side on mobile, left side on desktop */}
+          <div
+            className={`hamburger-menu ${
+              isHamburgerOpen ? "open" : ""
+            } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-last md:order-first`}
+            onClick={toggleMenu}
+            role="button"
+            aria-label={isExpanded ? "Close menu" : "Open menu"}
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && toggleMenu()}
+            style={{ color: menuColor || "#000" }}
+          >
+            <div
+              className={`hamburger-line w-[26px] h-[2px] bg-current transition-[transform,opacity] duration-300 ease-linear origin-center ${
+                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
+              } group-hover:opacity-75`}
+            />
+            <div
+              className={`hamburger-line w-[26px] h-[2px] bg-current transition-[transform,opacity] duration-300 ease-linear origin-center ${
+                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
+              } group-hover:opacity-75`}
+            />
+          </div>
+
+          {/* CTA — desktop only */}
           <button
             type="button"
             onClick={() => handleLinkClick("/contact")}
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300"
+            className="hidden md:inline-flex items-center border-0 rounded-[calc(0.75rem-0.2rem)] px-4 h-[calc(100%-12px)] font-medium cursor-pointer transition-colors duration-300 text-sm"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
             Contact Us
           </button>
         </div>
 
-        {/* Cards content */}
+        {/* ── Expanded card content ── */}
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
-            isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"
-          } md:flex-row md:items-end md:gap-[12px]`}
+          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 z-[1]
+            ${isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"}
+            md:flex-row md:items-end md:gap-3`}
           aria-hidden={!isExpanded}
         >
           {(items || []).slice(0, 3).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
-              className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
               ref={setCardRef(idx)}
+              className="nav-card select-none flex flex-col gap-2 p-3 rounded-[calc(0.75rem-0.2rem)] flex-1 min-h-[60px] md:h-full md:min-h-0"
               style={{ backgroundColor: item.bgColor, color: item.textColor }}
             >
-              <div className="nav-card-label font-normal tracking-[-0.5px] text-[18px] md:text-[22px]">
+              <div className="nav-card-label font-normal tracking-[-0.5px] text-base md:text-[22px]">
                 {item.label}
               </div>
               <div className="nav-card-links mt-auto flex flex-col gap-[2px]">
@@ -265,7 +273,7 @@ const CardNav: React.FC<CardNavProps> = ({
                       key={`${lnk.label}-${i}`}
                       onClick={() => handleLinkClick(lnk.href)}
                       aria-label={lnk.ariaLabel}
-                      className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px] text-left bg-transparent border-0 p-0"
+                      className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-sm md:text-[16px] text-left bg-transparent border-0 p-0"
                       style={{ color: item.textColor }}
                     >
                       {IconComponent ? (

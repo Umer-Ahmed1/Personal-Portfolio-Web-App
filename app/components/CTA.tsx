@@ -47,7 +47,7 @@ export default function CallToAction() {
 
 
       <motion.div
-        className="relative z-10 w-full max-w-425 mx-auto px-6 3xl:px-0 "
+        className="relative z-10 w-full max-w-425 mx-auto px-6 py-6 3xl:px-0 "
         variants={container}
         initial="hidden"
         whileInView="visible"
