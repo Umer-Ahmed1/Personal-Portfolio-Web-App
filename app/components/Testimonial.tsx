@@ -1,137 +1,175 @@
 "use client";
 
 import Link from "next/link";
-import { useReveal } from "@/app/hooks/useReveal";
-import EmblaCarousel from './EmblaCarousel'
-import { EmblaOptionsType } from 'embla-carousel'
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import TrueFocus from "./Focus";
 
-interface Testimonial {
-  text: string;
-  name: string;
-  role: string;
-  initials: string;
+interface CompetencyCard {
+  num: string;
+  image: string;
+  title: string;
+  description: string;
 }
-const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true }
-const SLIDE_COUNT = 5
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
-const testimonials: Testimonial[] = [
+const cards: CompetencyCard[] = [
   {
-    text: '"Never felt like having a contractor. Umer kept communication consistent and confident at every stage of our project. He felt like a true team member."',
-    name: "Garren Chen",
-    role: "CEO of NewBorn Solutions",
-    initials: "GC",
+    num: "01",
+    image: "/uxui.png",
+    title: "UX/UI Design",
+    description:
+      "Crafting intuitive, high-conversion interfaces that put the user first.",
   },
   {
-    text: '"Umer is a rare find: he managed our online product roadmap while simultaneously designing a world-class UI, delivering everything ahead of schedule."',
-    name: "James Miller",
-    role: "CTO at Blue Water",
-    initials: "JM",
+    num: "02",
+    image: "/full-stack.png",
+    title: "Full-Stack Development",
+    description:
+      "Building robust, scalable backends and pixel-perfect frontends.",
   },
   {
-    text: '"Technical precision. His ability to translate complex business requirements into clean, scalable code is unmatched. Umer makes the most difficult technical hurdles look easy."',
-    name: "Qarim T.",
-    role: "Product Lead to Stellar",
-    initials: "QT",
+    num: "03",
+    image: "/pm.png",
+    title: "Project Management",
+    description:
+      "Agile workflows and structured timelines to ensure zero-gap delivery.",
   },
   {
-    text: '"Technical precision. His ability to translate complex business requirements into clean, scalable code is unmatched. Umer makes the most difficult technical hurdles look easy."',
-    name: "Qarim T.",
-    role: "Product Lead to Stellar",
-    initials: "QT",
+    num: "04",
+    image: "/sys.png",
+    title: "Systems Architecture",
+    description:
+      "Designing the big picture logic to ensure long-term scalability.",
   },
-
 ];
 
-function TestimonialCard({ t }: { t: Testimonial }) {
-  return (
-    <div className="relative bg-[#141414] border border-[#222] p-9 px-8 hover:bg-[#1a1a1a] transition-colors duration-200">
-      {/* Source row */}
-      <div className="flex items-center gap-2 mb-4">
-        <span
-          className="font-syne font-extrabold text-[16px]"
-          style={{
-            background: "linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          Google
-        </span>
-        <div className="flex gap-[2px] text-[#FBBC05] text-[12px] tracking-[1px]">
-          {"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}
-        </div>
-      </div>
+export default function Competencies() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const maxIdx = cards.length - 1;
 
-      <p className="text-[13px] text-[#888] leading-[1.8] mb-6">{t.text}</p>
-
-      <div className="flex items-center gap-3">
-        <div
-          className="w-[38px] h-[38px] rounded-full flex items-center justify-center font-syne font-bold text-[13px] text-[#888] flex-shrink-0"
-          style={{ background: "linear-gradient(135deg, #333, #444)" }}
-        >
-          {t.initials}
-        </div>
-        <div>
-          <span className="text-[13px] font-semibold block mb-0.5">{t.name}</span>
-          <span className="text-[11px] text-[#555]">{t.role}</span>
-        </div>
-      </div>
-
-      {/* Decorative quote mark */}
-      <span className="absolute bottom-6 right-7 font-syne text-[64px] text-[#1a1a1a] leading-none pointer-events-none select-none">
-        &quot;
-      </span>
-    </div>
-  );
-}
-
-export default function Testimonials() {
-  const { ref, isVisible } = useReveal();
+  const handlePrev = () => setActiveIdx((i) => Math.max(0, i - 1));
+  const handleNext = () => setActiveIdx((i) => Math.min(maxIdx, i + 1));
 
   return (
     <section
-      id="testimonials"
-      ref={ref}
-      className={`px-[60px] py-[100px] bg-[#282828] border-t border-[#222] reveal ${isVisible ? "visible" : ""}`}
+      id="competencies"
+      className="relative py-[80px] border-t border-[#222] bg-[#282828]"
     >
-      {/* Header */}
-      <div className="mb-[52px]">
-        <span className="text-[11px] font-semibold tracking-[3px] uppercase text-[#888] block mb-5">
-          Social Proof
-        </span>
-        <h2 className="font-syne font-extrabold tracking-[-0.5px] text-[clamp(32px,4vw,52px)]">
-          Client Testimonial
-        </h2>
+      {/* HEADER */}
+      <div className="max-w-425 mx-auto px-6">
+        <div className="flex flex-col gap-6 md:flex-row md:justify-between mb-14">
+          
+          <h2 className="font-syne font-extrabold tracking-[-0.5px] text-white leading-tight">
+            <TrueFocus
+              sentence="Testimonials"
+              blurAmount={4.5}
+              borderColor="#e63030"
+          
+            />
+          </h2>
+
+          <div className="max-w-[280px] md:text-right">
+            <p className="text-[13px] text-white leading-relaxed">
+              I Bridge The Gap Between
+              <br />
+              Stakeholders And Technology
+            </p>
+          </div>
+
+        </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-3 gap-[2px]">
-           <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+      {/* CARDS */}
+      <div className="max-w-425 mx-auto  px-6">
+        <div
+          className="
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          lg:grid-cols-4
+          gap-6
+        "
+        >
+          {cards.map((card, i) => (
+            <div
+              key={card.num}
+              className={`relative flex flex-col p-8 bg-[#1c1c1c] border transition-all
+              ${
+                i === activeIdx
+                  ? "border-[#e63030]"
+                  : "border-[#2a2a2a]"
+              }`}
+            >
+              {/* background map */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: "url('/about-map.png')",
+                  backgroundSize: "250px",
+                  backgroundPosition: "right 20px top 0px",
+                  backgroundRepeat: "no-repeat",
+                  opacity: 0.9,
+                  filter: "grayscale(1)",
+                }}
+              />
 
+              <div className="relative z-10 flex flex-col h-full">
+                {/* icon */}
+                <div className="w-10 h-10 relative mb-auto">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="mt-8">
+                  <span className="font-syne text-[11px] text-[#555] tracking-[2px] block mb-3">
+                    {card.num}
+                  </span>
+
+                  <h3 className="font-syne font-bold text-[18px] text-white mb-3">
+                    {card.title}
+                  </h3>
+
+                  <p className="text-[13px] text-[#888] leading-[1.7]">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      
       </div>
 
-      {/* Controls */}
-      <div className="flex items-center gap-3 mt-10">
+      {/* CONTROLS */}
+      <div className="max-w-425 mx-auto px-6 mt-10 flex items-center gap-3">
         <button
-          aria-label="Previous"
-          className="w-11 h-11 border border-[#222] flex items-center justify-center text-[#888] text-[16px] hover:border-[#e63030] hover:text-[#e63030] hover:bg-red-500/5 transition-all duration-200"
+          onClick={handlePrev}
+          disabled={activeIdx === 0}
+          className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center disabled:opacity-30"
         >
-          ←
+          <img src="/left.png" width={18} height={14} />
         </button>
+
         <button
-          aria-label="Next"
-          className="w-11 h-11 border border-[#222] flex items-center justify-center text-[#888] text-[16px] hover:border-[#e63030] hover:text-[#e63030] hover:bg-red-500/5 transition-all duration-200"
+          onClick={handleNext}
+          disabled={activeIdx === maxIdx}
+          className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center disabled:opacity-30"
         >
-          →
+          <img src="/right.png" width={18} height={14} />
         </button>
+
         <div className="ml-auto">
           <Link
             href="#contact"
-            className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] hover:-translate-y-[1px] transition-all duration-200 inline-block"
+            className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] hover:bg-[#c72020] transition"
           >
-            Request A Free Estimate
+            Hire Me
           </Link>
         </div>
       </div>
