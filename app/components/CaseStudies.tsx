@@ -114,7 +114,7 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
         </h3>
 
         <p
-          className="text-[16px] font-light max-w-[600px] leading-[1.7] mb-4"
+          className="text-[16px] font-light max-w-[600px] leading-[1.7] mb-4 text-white/90"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {cs.description}
@@ -122,7 +122,7 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
 
         <div className="flex flex-col gap-1">
           <span
-            className="text-[16px]"
+            className="text-[16px] text-white/70"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             <strong className="font-medium">Outcome:</strong> {cs.outcome}
@@ -131,11 +131,11 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
             href={cs.websiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[16px] font-medium tracking-[0.5px] inline-flex items-center gap-1.5 mt-2 transition-all duration-200"
+            className="text-[16px] font-medium tracking-[0.5px] inline-flex items-center gap-1.5 mt-2 transition-all duration-200 text-white/80  "
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Website:{" "}
-            <span className="text-[#e63030] hover:text-[#c72020] transition-colors duration-200">
+            <span className="text-[#e63030]  transition-colors duration-200">
               {cs.website}
             </span>
             <FiArrowUpRight

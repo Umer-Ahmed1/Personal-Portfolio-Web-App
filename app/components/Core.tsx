@@ -167,7 +167,7 @@ export default function Competencies() {
 
         <div className="ml-auto">
           <Link
-            href="#contact"
+            href="/appointment"
             className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] hover:bg-[#c72020] transition"
           >
             Hire Me

@@ -39,6 +39,7 @@ const Header = () => {
       textColor: "#B42A2A",
       links: [
         { label: "About Me", ariaLabel: "About Me", href: "#about" },
+        { label: "Hire Me", ariaLabel: "Book an Appointment", href: "/appointment" },
       ],
     },
     {

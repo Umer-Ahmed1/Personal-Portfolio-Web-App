@@ -122,7 +122,7 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/appointment"
               className="
                 border border-[#EEEEEE] font-medium
                 transition duration-300 hover:bg-[#EEEEEE] hover:text-[#222222]
