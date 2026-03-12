@@ -17,7 +17,21 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import FloatingLines from '';
 
+<div style={{ width: '100%', height: '600px', position: 'relative' }}>
+  <FloatingLines 
+    enabledWaves={["middle"]}
+    // Array - specify line count per wave; Number - same count for all waves
+    lineCount={12}
+    // Array - specify line distance per wave; Number - same distance for all waves
+    lineDistance={40.5}
+    bendRadius={26.5}
+    bendStrength={1.5}
+    interactive={true}
+    parallax={true}
+  />
+</div>
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 interface BookingProps {
@@ -411,10 +425,10 @@ export default function DemoCallBooking({
         </div>
 
         {/* ── RIGHT: TIME SLOTS + CONFIRM ── */}
-        <div className="lg:w-[160px] flex-shrink-0 p-6 flex flex-col border-l border-white/[0.07]">
+        <div data-lenis-prevent className="lg:w-[160px] flex-shrink-0 p-6 flex flex-col border-l border-white/[0.07]">
           <div
             className="flex-1 flex flex-col gap-2 overflow-y-auto pr-1"
-            style={{ maxHeight: "380px", scrollbarWidth: "thin", scrollbarColor: "#333 transparent" }}
+            style={{ maxHeight: "380px", scrollbarWidth: "thin", scrollbarColor: "#e63030 transparent" }}
           >
             {TIME_SLOTS.map(slot => {
               const isSelected = selectedTime === slot;
@@ -428,7 +442,7 @@ export default function DemoCallBooking({
                   onHoverStart={() => setHoveredTime(slot)}
                   onHoverEnd={() => setHoveredTime(null)}
                   className={`
-                    w-full py-2.5 px-3 rounded-md text-[13px] font-medium border transition-all duration-200 text-center
+                    w-full py-2.5 px-3 rounded-md text-[13px] font-medium border transition-all duration-200 text-center cursor-pointer
                     ${isSelected
                       ? "bg-[#e63030] border-[#e63030] text-white"
                       : "border-white/15 text-white/70 hover:border-[#e63030] hover:text-white hover:bg-[#e63030]/10"
