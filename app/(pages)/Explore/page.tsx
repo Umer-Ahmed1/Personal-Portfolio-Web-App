@@ -151,10 +151,10 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#1e1e1e] overflow-x-hidden">
+    <div className="relative isolate min-h-screen bg-[#1e1e1e] overflow-x-hidden">
 
-      {/* ── FloatingLines — fixed, fills entire page ── */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* ── FloatingLines — absolute within this container only, never bleeds into footer ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <FloatingLines
           enabledWaves={FL_ENABLED_WAVES}
           lineCount={FL_LINE_COUNT}
@@ -171,9 +171,9 @@ export default function PortfolioPage() {
         />
       </div>
 
-      {/* vignette overlay */}
+      {/* vignette overlay — also scoped to this container */}
       <div
-        className="fixed inset-0 z-[1] pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse 100% 80% at 50% 40%, transparent 20%, rgba(8,0,0,0.7) 100%)",
@@ -188,15 +188,15 @@ export default function PortfolioPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="mb-14"
+          className="m-14 text-center"
         >
-          <h1 className="font-syne font-extrabold text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] tracking-[-1px] text-white mb-3">
+          <h2 className="font-syne font-extrabold text-[2rem] sm:text-[2.4rem] lg:text-[3rem] tracking-[-1px] text-white leading-tight">
             Selected case
             <br />
             <span className="text-[#e63030]">studies</span>
-          </h1>
+          </h2>
           <p
-            className="text-[14px] text-white/40 max-w-[480px] leading-[1.75]"
+            className="text-[14px] text-white/40 max-w-[480px] leading-[1.75] text-center mx-auto mt-4"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             A curated gallery of scalable digital products where I led the
