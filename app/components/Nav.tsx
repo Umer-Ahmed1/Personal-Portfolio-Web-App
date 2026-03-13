@@ -34,8 +34,6 @@ export interface CardNavProps {
 }
 
 const CardNav: React.FC<CardNavProps> = ({
-  logo,
-  logoAlt = "Logo",
   items,
   className = "",
   ease = "power3.out",
