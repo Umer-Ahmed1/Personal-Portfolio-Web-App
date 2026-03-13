@@ -108,12 +108,22 @@ export default function DemoCallBooking({
   async function handleConfirm() {
     if (!selectedDate || !selectedTime || !name.trim() || !email.trim()) return;
     setStatus("sending");
-    const payload = { to: toEmail, name, email,
-      date: `${MONTH_NAMES[viewMonth]} ${selectedDate}, ${viewYear}`,
-      time: selectedTime, timezone };
     try {
-      console.log("Booking payload:", payload);
-      await new Promise(r => setTimeout(r, 1200));
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          date: `${MONTH_NAMES[viewMonth]} ${selectedDate}, ${viewYear}`,
+          time: selectedTime,
+          timezone,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Server error");
+      }
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -375,7 +385,7 @@ export default function DemoCallBooking({
 
   // ── Inline mode — FloatingLines fills the entire section behind the card ──
   return (
-    <div className="relative min-h-screen bg-[#1a1a1a] flex items-center justify-center p-8 overflow-hidden pt-20">
+    <div className="relative min-h-screen bg-[#1a1a1a] flex items-center justify-center p-4 md:p-8 overflow-hidden">
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <FloatingLines
@@ -394,20 +404,12 @@ export default function DemoCallBooking({
           bottomWavePosition={FL_BOTTOM_WAVE}
         />
       </div>
+
       {/* Subtle radial vignette */}
       <div className="absolute inset-0 z-[1] pointer-events-none" style={FL_VIGNETTE_STYLE} />
 
       {/* Card sits above everything */}
       <div className="relative z-[2] w-full max-w-[1080px]">
-<div className="text-center mb-12">
-          <h2 className="font-syne font-extrabold text-[2rem] sm:text-[2.4rem] lg:text-[3rem] tracking-[-1px] text-white leading-tight">
-            Book An Appointment
-          </h2>
-          <p className="text-[13px] text-white/40 mt-3 leading-relaxed">
-            Book a free demo call to discuss your project better with me!
-          </p>
-        </div>
-
         {card}
       </div>
     </div>

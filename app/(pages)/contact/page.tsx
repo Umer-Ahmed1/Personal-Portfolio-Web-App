@@ -59,6 +59,7 @@ export default function Contact() {
   const [subject,   setSubject]   = useState<Subject>("General Inquiry");
   const [message,   setMessage]   = useState("");
   const [status,    setStatus]    = useState<Status>("idle");
+  const [errorMsg,  setErrorMsg]  = useState("");
   const [msgFocus,  setMsgFocus]  = useState(false);
 
   const subjects: Subject[] = ["General Inquiry","On-going Project","New Project","Other"];
@@ -70,17 +71,30 @@ export default function Contact() {
   async function handleSubmit() {
     if (!canSubmit) return;
     setStatus("sending");
+    setErrorMsg("");
+
     try {
-      await new Promise(r => setTimeout(r, 1400));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email, phone, subject, message }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Server error");
+      }
+
       setStatus("sent");
       setFirstName(""); setLastName(""); setEmail(""); setPhone(""); setMessage("");
-    } catch {
+    } catch (err) {
       setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
     }
   }
 
   return (
-    <section id="contact" className="relative py-30 bg-[#282828] overflow-hidden">
+    <section id="contact" className="relative py-20 bg-[#282828] overflow-hidden">
 
       {/* ── FloatingLines — full section background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -299,12 +313,12 @@ export default function Contact() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
-                    Message sent! I&apos;ll be in touch soon.
+                    Message sent! Check your inbox for a confirmation.
                   </motion.div>
                 ) : status === "error" ? (
                   <motion.div key="error" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                     className="flex items-center gap-3">
-                    <span className="text-[#f87171] text-[13px]">Something went wrong.</span>
+                    <span className="text-[#f87171] text-[13px]">{errorMsg || "Something went wrong."}</span>
                     <button onClick={() => setStatus("idle")} className="text-[12px] text-white/40 underline">
                       Retry
                     </button>
