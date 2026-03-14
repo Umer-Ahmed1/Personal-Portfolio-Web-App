@@ -265,38 +265,42 @@ export default function Testimonials() {
       </div>
 
       {/* ── CONTROLS ── */}
-      <div className="max-w-425 mx-auto px-6 mt-10 flex items-center gap-3">
-        <button
-          onClick={handlePrev}
-          className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center transition hover:border-white/60"
-        >
-          <img src="/left.png" width={18} height={14} alt="prev" />
-        </button>
+      <div className="max-w-425 mx-auto px-6 mt-10 flex flex-wrap items-center gap-3">
+        {/* Arrows + dots — grouped so they stay on the same line */}
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <button
+            onClick={handlePrev}
+            className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center transition hover:border-white/60 shrink-0"
+          >
+            <img src="/left.png" width={18} height={14} alt="prev" />
+          </button>
 
-        <button
-          onClick={handleNext}
-          className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center transition hover:border-white/60"
-        >
-          <img src="/right.png" width={18} height={14} alt="next" />
-        </button>
+          <button
+            onClick={handleNext}
+            className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center transition hover:border-white/60 shrink-0"
+          >
+            <img src="/right.png" width={18} height={14} alt="next" />
+          </button>
 
-        {/* 7 progress dots — active is red pill shape */}
-        <div className="flex items-center gap-1.5 ml-3">
-          {Array.from({ length: TOTAL }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => handleDot(i)}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width:  i === startIdx ? "20px" : "6px",
-                height: "6px",
-                backgroundColor: i === startIdx ? "#e63030" : "#444",
-              }}
-            />
-          ))}
+          {/* 7 progress dots — active is red pill shape */}
+          <div className="flex items-center gap-1.5 ml-1">
+            {Array.from({ length: TOTAL }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => handleDot(i)}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width:  i === startIdx ? "20px" : "6px",
+                  height: "6px",
+                  backgroundColor: i === startIdx ? "#e63030" : "#444",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="ml-auto">
+        {/* Hire Me — right-aligned on sm+, full-width centered on xs (iPhone SE) */}
+        <div className="w-full sm:w-auto flex justify-center sm:justify-end sm:ml-auto">
           <Link
             href="/appointment"
             className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] hover:bg-[#c72020] transition"

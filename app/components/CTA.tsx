@@ -87,7 +87,7 @@ export default function CallToAction() {
             className="pt-4 md:pt-10 flex flex-col sm:flex-row gap-4 md:gap-6"
           >
             <Link
-              href="/start-project"
+              href="/appointment"
               className="
                 inline-flex items-center justify-center
                 px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold
@@ -100,7 +100,7 @@ export default function CallToAction() {
             </Link>
 
             <Link
-              href="/book-strategy-call"
+              href="/contact"
               className="
                 inline-flex items-center justify-center
                 px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold

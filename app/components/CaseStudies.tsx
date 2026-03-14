@@ -71,8 +71,7 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
       initial={{ opacity: 0, y: 48 }}
       animate={visible ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: EASE, delay: index * 0.1 }}
-      className={`overflow-hidden cursor-pointer group
-        ${cs.featured ? "row-span-2 flex flex-col" : ""}`}
+      className="overflow-hidden cursor-pointer group flex flex-col"
     >
       {/* ── image: pans full image top→bottom on hover ── */}
       <div className="w-full aspect-video relative overflow-hidden bg-[#222222]">
@@ -92,7 +91,7 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
             alt={cs.title}
             fill
             className="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           />
         </motion.div>
 
@@ -101,20 +100,20 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
       </div>
 
       {/* ── body ── */}
-      <div className="p-7 px-8 flex-1 border border-[#222] border-t-0">
+      <div className="p-5 sm:p-7 sm:px-8 flex-1 border border-[#222] border-t-0">
         <span
-          className="text-[14px] font-semibold tracking-[2.5px] uppercase text-[#888] mb-2.5 block border border-[#333] px-3 py-2 w-max rounded-sm"
+          className="text-[12px] sm:text-[13px] font-semibold tracking-[2px] uppercase text-[#888] mb-2.5 block border border-[#333] px-3 py-1.5 w-max rounded-sm"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {cs.type}
         </span>
 
-        <h3 className="font-syne font-bold text-[22px] mb-2.5 leading-[1.3] text-white">
+        <h3 className="font-syne font-bold text-[18px] sm:text-[20px] xl:text-[22px] mb-2.5 leading-[1.3] text-white">
           {cs.title}
         </h3>
 
         <p
-          className="text-[16px] font-light max-w-[600px] leading-[1.7] mb-4 text-white/90"
+          className="text-[14px] sm:text-[15px] font-light max-w-[600px] leading-[1.7] mb-4 text-white/90"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {cs.description}
@@ -122,7 +121,7 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
 
         <div className="flex flex-col gap-1">
           <span
-            className="text-[16px] text-white/70"
+            className="text-[14px] sm:text-[15px] text-white/70"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             <strong className="font-medium">Outcome:</strong> {cs.outcome}
@@ -131,15 +130,15 @@ function CaseCard({ cs, index }: { cs: CaseStudy; index: number }) {
             href={cs.websiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[16px] font-medium tracking-[0.5px] inline-flex items-center gap-1.5 mt-2 transition-all duration-200 text-white/80  "
+            className="text-[14px] sm:text-[15px] font-medium tracking-[0.5px] inline-flex items-center gap-1.5 mt-2 transition-all duration-200 text-white/80"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Website:{" "}
-            <span className="text-[#e63030]  transition-colors duration-200">
+            <span className="text-[#e63030] transition-colors duration-200 truncate max-w-[160px] sm:max-w-none">
               {cs.website}
             </span>
             <FiArrowUpRight
-              className="w-4 h-4 group-[&:hover]:fill-[#e63030] group-hover:text-[#e63030] transition-all duration-200"
+              className="w-4 h-4 shrink-0 group-hover:text-[#e63030] transition-all duration-200"
               aria-hidden="true"
               title="Visit Website"
             />
@@ -191,15 +190,15 @@ export default function CaseStudies() {
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="max-w-425 mx-auto px-6 3xl:px-0 py-[100px]">
+      <div className="max-w-425 mx-auto px-4 sm:px-6 3xl:px-0 py-[60px] sm:py-[80px] lg:py-[100px]">
 
-        {/* Header */}
-        <div className="mb-14">
+        {/* ── Header ── */}
+        <div className="mb-10 sm:mb-14">
           <motion.h2
             initial={{ opacity: 0, y: 32 }}
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: EASE }}
-            className="font-syne font-extrabold leading-[1.1] tracking-[-0.5px] mb-3 text-[clamp(32px,4vw,52px)] text-white"
+            className="font-syne font-extrabold leading-[1.1] tracking-[-0.5px] mb-3 text-[clamp(28px,4vw,52px)] text-white"
           >
             Selected case
             <br />
@@ -209,7 +208,7 @@ export default function CaseStudies() {
             initial={{ opacity: 0, y: 20 }}
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-            className="text-[14px] text-[#888] max-w-[500px] leading-[1.7]"
+            className="text-[13px] sm:text-[14px] text-[#888] max-w-[500px] leading-[1.7]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             A curated gallery of scalable digital products where I led the
@@ -217,53 +216,56 @@ export default function CaseStudies() {
           </motion.p>
         </div>
 
-        {/* ── Mobile / Tablet (<1024px): flat 3-column grid ── */}
-        <div className="block lg:hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {caseStudies.map((cs, i) => (
+        {/* ── Mobile / sm: single column ── */}
+        <div className="flex flex-col gap-6 sm:hidden">
+          {caseStudies.map((cs, i) => (
+            <CaseCard key={cs.title} cs={cs} index={i} />
+          ))}
+        </div>
+
+        {/* ── Tablet (sm–xl): clean 2-col or 3-col grid, NO negative margins ── */}
+        <div className="hidden sm:grid xl:hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 items-start">
+          {caseStudies.map((cs, i) => (
+            <CaseCard key={cs.title} cs={cs} index={i} />
+          ))}
+        </div>
+
+        {/* ── Desktop (≥xl / ~1280px+): original asymmetric layout, safe at this width ── */}
+        <div className="hidden xl:grid grid-cols-2 gap-6 items-start">
+          {/* Left — featured */}
+          <div>
+            {featured.map((cs, i) => (
               <CaseCard key={cs.title} cs={cs} index={i} />
+            ))}
+          </div>
+
+          {/* Right — two secondary cards pulled up */}
+          <div
+            className="flex flex-col gap-6"
+            style={{ marginTop: "-196px" }}
+          >
+            {secondary.map((cs, i) => (
+              <CaseCard key={cs.title} cs={cs} index={i + 1} />
             ))}
           </div>
         </div>
 
-        {/* ── Desktop (≥1024px): original asymmetric layout ── */}
-        <div className="hidden lg:block">
-          <div className="grid grid-cols-2 gap-6 items-start">
-            {/* Left — featured */}
-            <div>
-              {featured.map((cs, i) => (
-                <CaseCard key={cs.title} cs={cs} index={i} />
-              ))}
-            </div>
-
-            {/* Right — two cards pulled up */}
-            <div
-              className="flex flex-col gap-6"
-              style={{ marginTop: "-196px" }}
-            >
-              {secondary.map((cs, i) => (
-                <CaseCard key={cs.title} cs={cs} index={i + 1} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Footer actions */}
+        {/* ── Footer actions ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE, delay: 0.4 }}
-          className="flex gap-4 mt-12 items-center"
+          className="flex flex-wrap gap-4 mt-10 sm:mt-12 items-center"
         >
           <Link
-            href="#portfolio"
+            href="/explore"
             className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] hover:-translate-y-[1px] transition-all duration-200 inline-block"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Explore More
           </Link>
           <Link
-            href="#contact"
+            href="/appointment"
             className="bg-transparent text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#333] tracking-[0.3px] hover:border-[#666] hover:-translate-y-[1px] transition-all duration-200 inline-block"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >

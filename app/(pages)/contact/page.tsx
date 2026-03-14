@@ -123,7 +123,7 @@ export default function Contact() {
         }}
       />
 
-      <div className="relative z-[2] max-w-[1400px] mx-auto px-6">
+      <div className="relative z-[2] max-w-[1400px] mx-auto px-6 mt-12">
 
         {/* ── HEADING — centered ── */}
         <div className="text-center mb-12">

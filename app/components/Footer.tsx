@@ -55,7 +55,7 @@ const MODAL_CONTENT: Record<string, { title: string; body: React.ReactNode }> = 
   terms: {
     title: 'Terms of Use',
     body: (
-      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed">
+      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed" data-lenis-prevent >
         <p>By accessing this portfolio website you agree to the following terms. This site is provided for informational and demonstration purposes only.</p>
         <h4 className="text-white font-semibold text-[15px]">Intellectual Property</h4>
         <p>All content, designs, code samples and project descriptions are the intellectual property of Umer Ahmed unless otherwise credited. Reproduction without written permission is prohibited.</p>
@@ -72,7 +72,7 @@ const MODAL_CONTENT: Record<string, { title: string; body: React.ReactNode }> = 
   privacy: {
     title: 'Privacy Policy',
     body: (
-      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed">
+      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed" data-lenis-prevent>
         <p>Your privacy matters. This policy explains what information is collected when you visit this portfolio and how it is used.</p>
         <h4 className="text-white font-semibold text-[15px]">Information Collected</h4>
         <p>This site does not collect personally identifiable information unless you voluntarily submit it via the contact form. No accounts, logins or tracking profiles are created.</p>
@@ -89,7 +89,7 @@ const MODAL_CONTENT: Record<string, { title: string; body: React.ReactNode }> = 
   cookies: {
     title: 'Cookie Policy',
     body: (
-      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed">
+      <div className="space-y-4 text-white/60 text-[14px] leading-relaxed" data-lenis-prevent>
         <p>This website uses a minimal number of cookies to ensure basic functionality and an optimal browsing experience.</p>
         <h4 className="text-white font-semibold text-[15px]">Essential Cookies</h4>
         <p>Strictly necessary cookies may be set to remember session preferences such as scroll position or navigation state. These cannot be disabled as the site would not function correctly without them.</p>
