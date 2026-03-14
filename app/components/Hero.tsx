@@ -32,12 +32,11 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* ── Main Grid ── */}
-      {/*
-        Mobile  (<768px):  single column, content on top / image below
+      {/* ── Main Grid ──
+        Mobile  (<768px):  flex column so image can flex-grow and stick to bottom
         Desktop (≥768px):  two equal columns, both pinned to full viewport height
       */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 md:min-h-screen">
+      <div className="relative z-10 flex flex-col min-h-screen md:grid md:grid-cols-2 md:min-h-screen">
 
         {/* ── LEFT: Text Content ── */}
         <motion.div
@@ -52,8 +51,6 @@ export default function Hero() {
             order-1
           "
         >
-
-          
           {/* Heading — shrinks at each breakpoint */}
           <h1 className="
             font-light leading-tight
@@ -141,10 +138,10 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── RIGHT: Portrait Image ── */}
-        {/*
-          Mobile:  fixed aspect-ratio height (55 vw feels natural for a portrait)
-          Desktop: matches the left column exactly via md:h-screen
+        {/* ── RIGHT: Portrait Image ──
+          Mobile:  flex-1 so it fills all remaining vertical space below the text,
+                   keeping the image pinned to the bottom of the section.
+          Desktop: h-screen as before — nothing changed.
         */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
@@ -152,8 +149,8 @@ export default function Hero() {
           transition={{ duration: 0.9 }}
           className="
             relative w-full
-            h-[55vw] max-h-[70vh]
-            md:h-screen md:max-h-none
+            flex-1
+            md:flex-none md:h-screen md:max-h-none
             order-2
           "
         >
