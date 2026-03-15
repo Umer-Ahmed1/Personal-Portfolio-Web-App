@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./components/Header";
+import HeaderWrapper from "./components/HeaderWrapper";
+import FooterWrapper from "./components/FooterWrapper";
 import { Michroma, DM_Sans, Geist } from "next/font/google";
 import SmoothScroll from "@/app/components/SmoothScroll";
-import Footer from "./components/Footer";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const michroma = Michroma({
   subsets: ["latin"],
@@ -20,7 +20,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Umer Ahmed - Portfolio",
-  description: "Welcome to my personal portfolio! I'm Umer Ahmed, a passionate software developer with expertise in web development, mobile app development, and UI/UX design. Explore my projects, skills, and experience to see how I can help bring your ideas to life.",
+  description:
+    "Welcome to my personal portfolio! I'm Umer Ahmed, a passionate software developer with expertise in web development, mobile app development, and UI/UX design. Explore my projects, skills, and experience to see how I can help bring your ideas to life.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -33,15 +34,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body
-        className={`${michroma.className} antialiased ` }
-      >
-                <SmoothScroll>
-        <Header />
+      <body className={`${michroma.className} antialiased`}>
+        <SmoothScroll>
+          <HeaderWrapper />
         </SmoothScroll>
         {children}
-           <Footer />
-    
+        <FooterWrapper />
       </body>
     </html>
   );
