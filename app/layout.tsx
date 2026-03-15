@@ -19,7 +19,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Umer Ahmed - Portfolio",
+  title: "Umer Ahmed",
   description:
     "Welcome to my personal portfolio! I'm Umer Ahmed, a passionate software developer with expertise in web development, mobile app development, and UI/UX design. Explore my projects, skills, and experience to see how I can help bring your ideas to life.",
   icons: {

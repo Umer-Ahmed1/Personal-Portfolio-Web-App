@@ -163,22 +163,43 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const canLogin = clientId.trim() && password.trim() && !loading;
 
   return (
-    <motion.div
-      key="login"
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -16 }}
-      transition={{ duration: 0.45, ease: EASE }}
-      className="w-full max-w-[420px] mx-4 overflow-hidden"
-      style={{
-        background: "rgba(26,26,26,0.92)",
-        border: "1px solid rgba(255,255,255,0.07)",
-        backdropFilter: "blur(16px)",
-      }}
-    >
+    <div className="flex flex-col items-center w-full px-4">
+
+      {/* ── Page heading — centered above card ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="text-center mb-10 max-w-[480px]"
+      >
+        <h1 className="font-syne font-extrabold text-[2rem] sm:text-[2.6rem] lg:text-[3rem] tracking-[-1px] text-white leading-tight">
+          Project Status
+        </h1>
+        <p
+          className="text-[14px] text-white/40 leading-[1.75] mt-4"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
+          Enter your unique Project ID and password to securely access your
+          project's progress, timelines, and module details.
+        </p>
+      </motion.div>
+
+      {/* ── Login card ── */}
+      <motion.div
+        key="login"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -16 }}
+        transition={{ duration: 0.45, ease: EASE }}
+        className="w-full max-w-[440px] overflow-hidden"
+        style={{
+          background: "rgba(26,26,26,0.92)",
+          border: "1px solid rgba(255,255,255,0.07)",
+          backdropFilter: "blur(16px)",
+        }}
+      >
       <div className="h-1 bg-[#e63030]" />
-      <div className="p-10">
-        {/* Header */}
+      <div className="p-8 sm:p-10">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 bg-[#e63030] flex items-center justify-center shrink-0">
@@ -189,14 +210,12 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
               </svg>
             </div>
             <div>
-              <h1 className="font-syne font-bold text-[20px] text-white leading-tight">
-                Project Status
-              </h1>
-              <p className="text-[12px] text-white/40">Track your project progress</p>
+              <p className="text-[15px] font-semibold text-white font-syne">Client Login</p>
+              <p className="text-[12px] text-white/40">Secure project portal</p>
             </div>
           </div>
           <p className="text-[13px] text-white/40 leading-relaxed">
-            Enter the Project ID and password shared by Umer Ahmed to view your project.
+            Enter the Project ID and password shared by Umer Ahmed.
           </p>
         </div>
 
@@ -269,7 +288,8 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
           </motion.button>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -299,7 +319,7 @@ function Dashboard({ project, onLogout }: { project: Project; onLogout: () => vo
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.45, ease: EASE }}
-      className="w-full max-w-[1200px] mx-4"
+      className="w-full max-w-[1200px] px-4"
     >
       {/* Header card */}
       <div
@@ -441,7 +461,7 @@ export default function StatusPage() {
         style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 20%, rgba(8,0,0,0.7) 100%)" }} />
 
       {/* Content */}
-      <div className="relative z-[2] w-full flex items-center justify-center">
+      <div className="relative z-[2] w-full flex flex-col items-center justify-center px-4">
         <AnimatePresence mode="wait">
 
           {view === "loading" && (

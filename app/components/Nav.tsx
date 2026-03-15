@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import type { IconType } from "react-icons";
 
 interface CardNavLink {
@@ -34,6 +34,8 @@ export interface CardNavProps {
 }
 
 const CardNav: React.FC<CardNavProps> = ({
+  logo,
+  logoAlt = "Logo",
   items,
   className = "",
   ease = "power3.out",
@@ -48,28 +50,58 @@ const CardNav: React.FC<CardNavProps> = ({
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Reset nav state on every route change (fixes: nav broken after client navigation)
+  useEffect(() => {
+    setIsHamburgerOpen(false);
+    setIsExpanded(false);
+    if (tlRef.current) {
+      tlRef.current.kill();
+      tlRef.current = null;
+    }
+    if (navRef.current) {
+      gsap.set(navRef.current, { height: 60, overflow: "hidden" });
+    }
+    if (cardsRef.current.length) {
+      gsap.set(cardsRef.current, { y: 50, opacity: 0 });
+    }
+    // Recreate timeline after reset
+    setTimeout(() => {
+      const tl = createTimeline();
+      tlRef.current = tl;
+    }, 50);
+  }, [pathname]);
 
   const handleLinkClick = (href: string) => {
+    // Close the nav first, then navigate
     setIsHamburgerOpen(false);
-    if (tlRef.current) {
-      tlRef.current.eventCallback("onReverseComplete", () =>
-        setIsExpanded(false)
-      );
-      tlRef.current.reverse();
-    }
 
-    if (href.startsWith("#")) {
-      const id = href.slice(1);
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+    const closeAndNavigate = () => {
+      if (href.startsWith("#")) {
+        const id = href.slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          router.push(`/${href}`);
+        }
+      } else if (href.startsWith("http") || href.startsWith("mailto")) {
+        window.open(href, "_blank", "noopener noreferrer");
       } else {
-        router.push(`/${href}`);
+        router.push(href);
       }
-    } else if (href.startsWith("http") || href.startsWith("mailto")) {
-      window.open(href, "_blank", "noopener noreferrer");
+    };
+
+    if (tlRef.current && isExpanded) {
+      tlRef.current.eventCallback("onReverseComplete", () => {
+        setIsExpanded(false);
+        closeAndNavigate();
+      });
+      tlRef.current.reverse();
     } else {
-      router.push(href);
+      setIsExpanded(false);
+      closeAndNavigate();
     }
   };
 

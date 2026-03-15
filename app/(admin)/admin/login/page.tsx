@@ -117,6 +117,11 @@ export default function AdminLogin() {
                 </>
               ) : "Log In"}
             </motion.button>
+
+            <motion.button onClick={() => router.push("/")} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+              className="py-3.5 font-bold text-[14px] flex items-center justify-center gap-2 transition-all mt-2 bg-[#e63030] text-white hover:bg-[#c72020] cursor-pointer">
+              Back to main page
+            </motion.button>
           </div>
         </div>
       </motion.div>

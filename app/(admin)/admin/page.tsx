@@ -162,6 +162,18 @@ function ProjectModal({
     ) as Record<ModuleName, ModuleStatus>
   );
 
+  // When overall status switches to "Completed", mark all selected modules completed
+  function handleOverallStatusChange(val: OverallStatus) {
+    setOverallStatus(val);
+    if (val === "Completed") {
+      setModuleStatuses(prev => {
+        const next = { ...prev };
+        MODULE_NAMES.forEach(n => { if (selectedMods.has(n)) next[n] = "Completed"; });
+        return next;
+      });
+    }
+  }
+
   function toggleModule(name: ModuleName) {
     setSelectedMods(prev => {
       const next = new Set(prev);
@@ -231,7 +243,7 @@ function ProjectModal({
 
             {/* Overall status */}
             <FormField label="Overall Status">
-              <select className={selectCls} value={overallStatus} onChange={e => setOverallStatus(e.target.value as OverallStatus)}
+              <select className={selectCls} value={overallStatus} onChange={e => handleOverallStatusChange(e.target.value as OverallStatus)}
                 style={{ background: "#2a2a2a" }}>
                 {OVERALL_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
