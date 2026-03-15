@@ -259,14 +259,30 @@ export default function CaseStudies() {
         >
           <Link
             href="/explore"
-            className="bg-[#e63030] text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#e63030] tracking-[0.3px] hover:bg-[#c72020] hover:border-[#c72020] hover:-translate-y-[1px] transition-all duration-200 inline-block"
+             className="
+                bg-[#B42A2A] text-[#eeeeee] font-medium
+                transition duration-300 hover:opacity-80
+                px-5 py-3
+                sm:px-6 sm:py-3.5
+                md:px-7 md:py-3.5
+                lg:px-8 lg:py-4
+                text-sm sm:text-sm md:text-sm lg:text-base
+              "
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Explore More
           </Link>
           <Link
             href="/appointment"
-            className="bg-transparent text-white text-[13px] font-semibold px-[26px] py-3 border-2 border-[#333] tracking-[0.3px] hover:border-[#666] hover:-translate-y-[1px] transition-all duration-200 inline-block"
+           className="
+                border border-[#EEEEEE] font-medium text-white
+                transition duration-300 hover:bg-[#EEEEEE] hover:text-[#222222]
+                px-5 py-3
+                sm:px-6 sm:py-3.5
+                md:px-7 md:py-3.5
+                lg:px-8 lg:py-4
+                text-sm sm:text-sm md:text-sm lg:text-base
+              "
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Hire Me

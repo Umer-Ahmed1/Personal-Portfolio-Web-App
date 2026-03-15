@@ -183,7 +183,7 @@ rotationEnd = 'center center'
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
           >
             <Link
-              href="/about"
+              href="/explore"
               className="inline-block px-8 py-4 bg-[#B42A2A] hover:bg-[#9f2424] transition-colors text-white relative overflow-hidden group"
             >
               {/* shimmer sweep */}

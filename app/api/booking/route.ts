@@ -17,12 +17,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-
-    // Pre-built Gmail compose URL — clicking the button in Umer's email
-    // opens a new Gmail message pre-filled with the user's email + subject.
-    // Umer just pastes the meeting link in the body and hits send.
-    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1`
       + `&to=${encodeURIComponent(email)}`
       + `&su=${encodeURIComponent(`Meeting Link — ${date} at ${time}`)}`
       + `&body=${encodeURIComponent(
@@ -67,16 +61,9 @@ export async function POST(req: NextRequest) {
             </table>
             <hr style="border-color:#333;margin:28px 0;" />
             <p style="color:#888;font-size:13px;margin:0 0 16px;">
-              When you have a meeting link ready, click below to send it to ${name}:
+              When you have a meeting link ready, email it to <a href="mailto:${email}" style="color:#e63030;">${email}</a>:
             </p>
-            <a href="${gmailComposeUrl}" target="_blank"
-              style="display:inline-block;background:#B42A2A;color:white;text-decoration:none;
-                     padding:12px 28px;font-weight:bold;font-size:14px;letter-spacing:0.5px;">
-              Send Meeting Link to ${name}
-            </a>
-            <p style="color:#555;font-size:11px;margin-top:12px;">
-              Opens Gmail with a pre-filled message to ${email}
-            </p>
+          
           </div>
           <div style="background:#111;padding:16px 32px;color:#555;font-size:12px;">
             Sent from your portfolio booking form

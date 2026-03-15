@@ -206,14 +206,12 @@ export default function Testimonials() {
                     {/* TOP: stars + Google wordmark */}
                     <div className="flex items-center justify-between mb-3 shrink-0">
                       <Stars count={item.rating} />
-                      <span className="text-[13px] font-bold leading-none select-none">
-                        <span style={{ color: "#4285F4" }}>G</span>
-                        <span style={{ color: "#EA4335" }}>o</span>
-                        <span style={{ color: "#FBBC05" }}>o</span>
-                        <span style={{ color: "#4285F4" }}>g</span>
-                        <span style={{ color: "#34A853" }}>l</span>
-                        <span style={{ color: "#EA4335" }}>e</span>
-                      </span>
+                      <img
+                        src="/google.png"
+                        alt="Google"
+                        className="object-contain  shrink-0"
+                        style={{ width: 60, height: 20 }}
+                      />
                     </div>
 
                     {/* REVIEW — 5-line clamp keeps card height stable */}
@@ -252,8 +250,8 @@ export default function Testimonials() {
                       <img
                         src="/quote.png"
                         alt=""
-                        className="object-contain opacity-40 shrink-0"
-                        style={{ width: 28, height: 28 }}
+                        className="object-contain shrink-0"
+                        style={{ width: 58, height: 58 }}
                       />
                     </div>
                   </motion.div>
