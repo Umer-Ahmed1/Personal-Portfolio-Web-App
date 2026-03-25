@@ -282,14 +282,10 @@ export default function Footer() {
             <motion.div variants={fadeInUp}>
               <h3 className="text-xl font-semibold mb-6">Contact</h3>
               <ul className="space-y-3 text-gray-300 text-[15px]">
-                <li>+92-301 824 2245</li>
+                <li>727-219-1172</li>
                 <li>
-                  <a
-                    href="mailto:umerahmedwork4@gmail.com"
-                    className="hover:text-[#b42a2a] transition-colors break-all"
-                  >
-                    umerahmedwork4@gmail.com
-                  </a>
+                  4705 ALT 19 STE A, 34683, Palm Harbor, United States
+
                 </li>
               </ul>
             </motion.div>
