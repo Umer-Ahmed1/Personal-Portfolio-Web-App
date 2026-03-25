@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import FloatingLines from '@/components/FloatingLines';
+import Image from "next/image";
 
 interface BookingProps {
   modal?: boolean;
@@ -39,20 +39,6 @@ function getDaysInMonth(year: number, month: number) {
 function getFirstDayOfMonth(year: number, month: number) {
   return new Date(year, month, 1).getDay();
 }
-
-// ── Stable module-level constants for FloatingLines props ─────────────────
-// CRITICAL: These must be outside the component. Any array/object defined
-// inside the component is a new reference on every render → memo() sees
-// "new props" → FloatingLines remounts → WebGL context destroyed = white flash.
-const FL_ENABLED_WAVES: Array<'top' | 'middle' | 'bottom'> = ["middle", "bottom"];
-const FL_LINE_COUNT    = [14, 8];
-const FL_LINE_DISTANCE = [38, 55];
-const FL_GRADIENT      = ["#1a0000", "#4a0a0a", "#8b1010", "#B42A2A", "#e63030", "#ff5a3c"];
-const FL_MIDDLE_WAVE   = { x: 3.0,  y: 0.0,  rotate:  0.15 };
-const FL_BOTTOM_WAVE   = { x: 1.5,  y: -0.5, rotate: -0.8  };
-const FL_VIGNETTE_STYLE = {
-  background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(10,0,0,0.55) 100%)",
-} as React.CSSProperties;
 
 export default function DemoCallBooking({
   modal = false,
@@ -383,30 +369,15 @@ export default function DemoCallBooking({
     );
   }
 
-  // ── Inline mode — FloatingLines fills the entire section behind the card ──
   return (
     <div className="relative min-h-screen bg-[#1a1a1a] flex items-center justify-center p-4 md:p-8 overflow-hidden">
 
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <FloatingLines
-          enabledWaves={FL_ENABLED_WAVES}
-          lineCount={FL_LINE_COUNT}
-          lineDistance={FL_LINE_DISTANCE}
-          bendRadius={20}
-          bendStrength={1.2}
-          interactive={true}
-          parallax={true}
-          parallaxStrength={0.15}
-          animationSpeed={0.8}
-          linesGradient={FL_GRADIENT}
-          mixBlendMode="screen"
-          middleWavePosition={FL_MIDDLE_WAVE}
-          bottomWavePosition={FL_BOTTOM_WAVE}
-        />
+           <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <Image src="/dp-bg.png" alt="Background" fill priority className="object-cover opacity-100" />
       </div>
 
       {/* Subtle radial vignette */}
-      <div className="absolute inset-0 z-[1] pointer-events-none" style={FL_VIGNETTE_STYLE} />
+      <div className="absolute inset-0 z-[1] pointer-events-none"  />
 
       {/* Card sits above everything */}
       <div className="relative z-[2] w-full max-w-[1080px]">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FloatingLines from "@/components/FloatingLines";
+import Image from "next/image";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type ModuleStatus  = "Not Started" | "In Progress" | "In Review" | "Completed";
@@ -448,15 +449,9 @@ export default function StatusPage() {
     <div className="relative min-h-screen bg-[#1e1e1e] flex items-center justify-center overflow-hidden py-20">
 
       {/* FloatingLines background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <FloatingLines
-          enabledWaves={FL_ENABLED_WAVES} lineCount={FL_LINE_COUNT}
-          lineDistance={FL_LINE_DISTANCE} bendRadius={20} bendStrength={1.2}
-          interactive={false} parallax={false} animationSpeed={0.7}
-          linesGradient={FL_GRADIENT} mixBlendMode="screen"
-          middleWavePosition={FL_MIDDLE_WAVE} bottomWavePosition={FL_BOTTOM_WAVE}
-        />
-      </div>
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+  <Image src="/dp-bg.png" alt="Background" fill priority className="object-cover opacity-100" />
+</div>
       <div className="absolute inset-0 z-[1] pointer-events-none"
         style={{ background: "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 20%, rgba(8,0,0,0.7) 100%)" }} />
 

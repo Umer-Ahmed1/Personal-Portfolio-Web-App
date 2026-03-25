@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
-import FloatingLines from "@/components/FloatingLines";
 import projectsData from "./projects.json";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -20,13 +19,6 @@ interface Project {
   websiteUrl: string;
 }
 
-// ── Stable FloatingLines constants ────────────────────────────────────────────
-const FL_ENABLED_WAVES: Array<"top" | "middle" | "bottom"> = ["middle", "bottom"];
-const FL_LINE_COUNT    = [14, 8];
-const FL_LINE_DISTANCE = [38, 55];
-const FL_GRADIENT      = ["#1a0000","#4a0a0a","#8b1010","#B42A2A","#e63030","#ff5a3c"];
-const FL_MIDDLE_WAVE   = { x: 3.0, y: 0.0,  rotate:  0.15 };
-const FL_BOTTOM_WAVE   = { x: 1.5, y: -0.5, rotate: -0.8  };
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const PER_PAGE = 6;
@@ -153,24 +145,9 @@ export default function PortfolioPage() {
   return (
     <div className="relative isolate min-h-screen bg-[#1e1e1e] overflow-x-hidden">
 
-      {/* ── FloatingLines — absolute within this container only, never bleeds into footer ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <FloatingLines
-          enabledWaves={FL_ENABLED_WAVES}
-          lineCount={FL_LINE_COUNT}
-          lineDistance={FL_LINE_DISTANCE}
-          bendRadius={20}
-          bendStrength={1.2}
-          interactive={false}
-          parallax={false}
-          animationSpeed={0.7}
-          linesGradient={FL_GRADIENT}
-          mixBlendMode="screen"
-          middleWavePosition={FL_MIDDLE_WAVE}
-          bottomWavePosition={FL_BOTTOM_WAVE}
-        />
-      </div>
-
+     <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+  <Image src="/dp-bg.png" alt="Background" fill priority className="object-cover opacity-100" />
+</div>
       {/* vignette overlay — also scoped to this container */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"

@@ -3,19 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import FloatingLines from "@/components/FloatingLines";
+import Image from "next/image";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type Subject = "General Inquiry" | "On-going Project" | "New Project" | "Other";
 type Status  = "idle" | "sending" | "sent" | "error";
 
-// ── Stable FloatingLines props (module-level = no re-render flicker) ──────────
-const FL_ENABLED_WAVES: Array<"top" | "middle" | "bottom"> = ["middle", "bottom"];
-const FL_LINE_COUNT    = [14, 8];
-const FL_LINE_DISTANCE = [38, 55];
-const FL_GRADIENT      = ["#1a0000","#4a0a0a","#8b1010","#B42A2A","#e63030","#ff5a3c"];
-const FL_MIDDLE_WAVE   = { x: 3.0,  y: 0.0,  rotate:  0.15 };
-const FL_BOTTOM_WAVE   = { x: 1.5,  y: -0.5, rotate: -0.8  };
 
 // ── Animated underline input ───────────────────────────────────────────────────
 function Field({
@@ -97,22 +90,9 @@ export default function Contact() {
     <section id="contact" className="relative py-20 bg-[#282828] overflow-hidden">
 
       {/* ── FloatingLines — full section background ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <FloatingLines
-          enabledWaves={FL_ENABLED_WAVES}
-          lineCount={FL_LINE_COUNT}
-          lineDistance={FL_LINE_DISTANCE}
-          bendRadius={20}
-          bendStrength={1.2}
-          interactive={false}
-          parallax={false}
-          animationSpeed={0.8}
-          linesGradient={FL_GRADIENT}
-          mixBlendMode="screen"
-          middleWavePosition={FL_MIDDLE_WAVE}
-          bottomWavePosition={FL_BOTTOM_WAVE}
-        />
-      </div>
+     <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+  <Image src="/dp-bg.png" alt="Background" fill priority className="object-cover opacity-40" />
+</div>
 
       {/* vignette so card has contrast */}
       <div

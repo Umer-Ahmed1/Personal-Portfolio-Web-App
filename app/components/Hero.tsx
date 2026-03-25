@@ -92,7 +92,7 @@ export default function Hero() {
             className="flex flex-wrap gap-4 mt-8"
           >
             <Link
-              href="/portfolio"
+              href="/explore"
               className="
                 bg-[#B42A2A] text-[#eeeeee] font-medium
                 transition duration-300 hover:opacity-80
