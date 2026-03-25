@@ -26,35 +26,35 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    type: "UI/UX & Management",
-    image: "/reelstacks.png",
-    title: "Social Media Application & Website",
+    type: "Corporate Website & Branding",
+    image: "/plazaconstruction.png",
+    title: "Construction & Infrastructure Website",
     description:
-      "Built a social mobile and web application that leverages one-tap sharing and multi-platform compatibility to solve the problem of fragmented content saving.",
-    outcome: "Optimised Curation",
+      "Developed a modern, enterprise-grade website focused on showcasing large-scale construction projects, company expertise, and strong brand credibility.",
+    outcome: "Enhanced Brand Authority",
     featured: true,
-    website: "reelstacks.com",
-    websiteUrl: "https://reelstacks.com",
+    website: "plazaconstruction.com",
+    websiteUrl: "https://www.plazaconstruction.com/",
   },
   {
-    type: "Development & Design",
-    image: "/focusedcaretherapeuticmassage.png",
-    title: "Website Redesign & Integrated Booking Solution",
+    type: "E-commerce & Product Experience",
+    image: "/pitayafoods.png",
+    title: "Food Brand E-commerce Platform",
     description:
-      "A complete design and development project focused on brand identity and the implementation of a high-conversion online scheduling feature.",
-    outcome: "Increased Conversions",
-    website: "focusedcaretherapeuticmassage.com",
-    websiteUrl: "https://focusedcaretherapeuticmassage.com",
+      "Designed and optimized a vibrant e-commerce experience for a health-focused food brand, emphasizing product storytelling, usability, and conversion-focused layouts.",
+    outcome: "Improved User Engagement",
+    website: "pitayafoods.com",
+    websiteUrl: "https://www.pitayafoods.com/",
   },
   {
-    type: "Full-Stack Solution",
-    image: "/turnbyturn.png",
-    title: "Driving School Portal",
+    type: "E-commerce & Performance",
+    image: "/pursuefitness.png",
+    title: "Fitness Apparel Online Store",
     description:
-      "Designed and engineered a robust educational portal that integrates automated registration, secure sign-up logic, and a self-paced online classroom module.",
-    outcome: "Operational Efficiency",
-    website: "turnbyturn.ca",
-    websiteUrl: "https://turnbyturn.ca",
+      "Built a high-performance e-commerce platform tailored for a global fitness brand, with a focus on seamless navigation, mobile responsiveness, and fast checkout flow.",
+    outcome: "Increased Sales Conversion",
+    website: "pursuefitness.com",
+    websiteUrl: "https://www.pursuefitness.com/",
   },
 ];
 

@@ -1,204 +1,104 @@
 [
-   {
+  {
     "id": 1,
-    "type": "Development & Design",
-    "image": "/focusedcaretherapeuticmassage.png",
-    "title": "Website Redesign & Integrated Booking Solution",
-    "description": "A complete design and development project focused on brand identity and the implementation of a high-conversion online scheduling feature.",
-    "outcome": "Increased Conversions",
-    "website": "focusedcaretherapeuticmassage.com",
-    "websiteUrl": "https://focusedcaretherapeuticmassage.com"
+    "type": "Corporate Website",
+    "image": "/plazaconstruction.png",
+    "title": "Construction & Infrastructure Website",
+    "description": "Developed a modern corporate website showcasing large-scale projects, company expertise, and strong brand credibility.",
+    "outcome": "Enhanced Brand Authority",
+    "website": "plazaconstruction.com",
+    "websiteUrl": "https://www.plazaconstruction.com/"
   },
-    {
+  {
     "id": 2,
-    "type": "App Design & Development",
-    "image": "/mytrle.png",
-    "title": "Children E-Book Website",
-    "description": "Built a platform for a children's story e-book that features a show-your-progress gameplay alongside seamless Amazon integration.A website for a children’s story e-book that features a direct payment gateway alongside seamless Amazon integration",
-    "outcome": "Stronger user flow and higher local visibility.",
-    "website": "myrtletheturtle.co/",
-    "websiteUrl": "https://myrtletheturtle.co/"
+    "type": "E-commerce Experience",
+    "image": "/pitayafoods.png",
+    "title": "Health Food Brand E-commerce",
+    "description": "Designed a vibrant product-focused shopping experience with strong storytelling and conversion-driven UI.",
+    "outcome": "Improved Engagement",
+    "website": "pitayafoods.com",
+    "websiteUrl": "https://www.pitayafoods.com/"
   },
-
   {
     "id": 3,
-    "type": "Full-Stack Solution",
-    "image": "/turnbyturn.png",
-    "title": "Driving School Portal",
-    "description": "Designed and engineered a robust educational portal that integrates automated registration, secure sign-up logic, and a self-paced online classroom module.",
-    "outcome": "Operational Efficiency",
-    "website": "turnbyturn.ca",
-    "websiteUrl": "https://turnbyturn.ca"
+    "type": "E-commerce & Performance",
+    "image": "/pursuefitness.png",
+    "title": "Fitness Apparel Online Store",
+    "description": "Built a high-performance storefront optimized for mobile users, fast checkout, and seamless navigation.",
+    "outcome": "Higher Conversions",
+    "website": "pursuefitness.com",
+    "websiteUrl": "https://www.pursuefitness.com/"
   },
-
   {
     "id": 4,
-    "type": "Full-Stack Solution",
-    "image": "/zoe.png",
-    "title": "A High-End Digital Storefront for Zoe's Creations",
-    "description": "Developed a sophisticated e-commerce platform for luxury hair wigs, combining a premium visual aesthetic with a seamless, user-centric shopping experience",
-    "outcome": "Premium Positioning",
-    "website": "zoecreations.com",
-    "websiteUrl": "https://damwebserver.com/zoe/"
+    "type": "Brand & Product Website",
+    "image": "/manilife.png",
+    "title": "Natural Food Brand Website",
+    "description": "Crafted a clean and engaging product website emphasizing brand identity, storytelling, and usability.",
+    "outcome": "Stronger Brand Presence",
+    "website": "mani-life.com",
+    "websiteUrl": "https://mani-life.com/"
   },
-   {
+  {
     "id": 5,
-    "type": "UI/UX & Management",
-    "image": "/reelstacks.png",
-    "title": "Social Media Application & Website",
-    "description": "Built a social mobile and web application that leverages one-tap sharing and multi-platform compatibility to solve the problem of fragmented content saving.",
-    "outcome": "Optimised Curation",
-    "website": "reelstacks.com",
-    "websiteUrl": "https://reelstacks.com"
+
+    "type": "Personal Brand Website",
+    "image": "/stacylel.png",
+    "title": "Fitness Coaching Website",
+    "description": "Built a personal brand platform with program offerings, engagement flows, and strong call-to-actions.",
+    "outcome": "Stronger Personal Brand",
+    "website": "stacylelfitness.com",
+    "websiteUrl": "https://www.stacylelfitness.com/"
+
   },
   {
     "id": 6,
-    "type": "B2B Marketing",
-    "image": "/subcity.png",
-    "title": "A Subscription-Based Network for Subcontractors",
-    "description": "Designed and developed a scalable multi-user platform featuring a tiered subscription model, lead generation tools, and an integrated professional directory.",
-    "outcome": "Effortless Sourcing",
-    "website": "subcitycontractornetwork.com",
-    "websiteUrl": "https://subcitycontractornetwork.com/"
+    "type": "Corporate Website",
+    "image": "/manayerb.png",
+    "title": "Industrial Equipment Website",
+    "description": "Built a structured multilingual corporate platform showcasing industrial products and capabilities.",
+    "outcome": "Global Reach",
+    "website": "manayerbamate.com",
+    "websiteUrl": "https://en.manayerbamate.com/"
   },
   {
     "id": 7,
-    "type": "UI/UX Design",
-    "image": "/project7.png",
-    "title": "SaaS Dashboard Redesign",
-    "description": "Redesigned the core analytics dashboard for a B2B SaaS product, focusing on data hierarchy, cognitive load reduction and mobile-first responsiveness.",
-    "outcome": "Reduced Churn by 22%",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
+    "type": "Local Business Platform",
+    "image": "/upstatelaundry.png",
+    "title": "Laundromat Service Website",
+    "description": "Developed a user-friendly platform with clear service presentation and easy navigation for customers.",
+    "outcome": "Improved Accessibility",
+    "website": "upstatelaundromat.com",
+    "websiteUrl": "https://www.upstatelaundromat.com/"
   },
   {
     "id": 8,
-    "type": "Development & Design",
-    "image": "/project8.png",
-    "title": "Real Estate Listing Platform",
-    "description": "Built a full-stack real estate portal with advanced search filters, virtual tour integrations, and a CRM-connected lead capture system.",
-    "outcome": "3x Lead Volume",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
+    "type": "Local Business Website",
+    "image": "/justrightlawns.png",
+    "title": "Lawn Care Services Website",
+    "description": "Created a clean and conversion-focused website with strong local SEO structure and service clarity.",
+    "outcome": "Increased Leads",
+    "website": "justrightlawns.com",
+    "websiteUrl": "https://justrightlawns.com/"
   },
   {
     "id": 9,
-    "type": "Full-Stack Solution",
-    "image": "/project9.png",
-    "title": "Restaurant Chain Management System",
-    "description": "Engineered a multi-location restaurant management platform covering table reservations, inventory tracking, staff scheduling and live kitchen display.",
-    "outcome": "30% Ops Savings",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
+    "type": "Premium E-commerce",
+    "image": "/nortvi.png",
+    "title": "Luxury Travel Gear Store",
+    "description": "Designed a premium e-commerce experience focused on minimalism, product quality, and storytelling.",
+    "outcome": "High-End Positioning",
+    "website": "nortvi.com",
+    "websiteUrl": "https://nortvi.com/"
   },
   {
     "id": 10,
-    "type": "UI/UX & Management",
-    "image": "/project10.png",
-    "title": "Healthcare Patient Portal",
-    "description": "Designed and developed a HIPAA-compliant patient portal enabling appointment booking, secure messaging with providers and real-time prescription tracking.",
-    "outcome": "Improved Adherence",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 11,
-    "type": "App Design & Development",
-    "image": "/project11.png",
-    "title": "Fitness Tracking Mobile App",
-    "description": "Crafted a cross-platform fitness app with AI-driven workout recommendations, progress visualisations and social accountability features.",
-    "outcome": "Retained 68% MAU",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 12,
-    "type": "Development & Design",
-    "image": "/project12.png",
-    "title": "E-Learning Platform for Corporates",
-    "description": "Built a white-label corporate training platform with SCORM compliance, progress dashboards and certificate generation at scale.",
-    "outcome": "Enterprise Adoption",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 13,
-    "type": "Full-Stack Solution",
-    "image": "/project13.png",
-    "title": "Legal Document Automation Tool",
-    "description": "Developed a smart document generation engine for a law firm, reducing contract drafting time with templated workflows and e-signature integrations.",
-    "outcome": "80% Faster Drafting",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 14,
-    "type": "B2B Marketing",
-    "image": "/project14.png",
-    "title": "Event Management & Ticketing Portal",
-    "description": "Created an end-to-end event platform with organiser dashboards, QR-based entry, seat selection and post-event analytics reporting.",
-    "outcome": "Seamless Experiences",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 15,
-    "type": "UI/UX Design",
-    "image": "/project15.png",
-    "title": "Non-Profit Donation & Volunteer Hub",
-    "description": "Designed a compelling digital home for an NGO — integrating campaign storytelling, recurring donation flows and a volunteer coordination system.",
-    "outcome": "40% Donation Uplift",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 16,
-    "type": "App Design & Development",
-    "image": "/project16.png",
-    "title": "Smart Home IoT Dashboard",
-    "description": "Built a real-time IoT control dashboard for smart home devices, featuring live sensor data, automation rules and energy consumption analytics.",
-    "outcome": "15% Energy Saved",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 17,
-    "type": "Development & Design",
-    "image": "/project17.png",
-    "title": "Travel Itinerary Planner",
-    "description": "Developed a travel planning web app with AI-assisted itinerary generation, collaborative editing and hotel/flight aggregator integrations.",
-    "outcome": "Loved by Travellers",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 18,
-    "type": "Full-Stack Solution",
-    "image": "/project18.png",
-    "title": "Inventory & Supply Chain Manager",
-    "description": "Architected a supply-chain platform with barcode scanning, supplier order automation and predictive stock replenishment powered by historical data.",
-    "outcome": "Zero Stockouts",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 19,
-    "type": "UI/UX & Management",
-    "image": "/project19.png",
-    "title": "Freelance Marketplace Platform",
-    "description": "Designed and built a niche freelance marketplace for creative professionals with escrow payments, portfolio showcasing and a dispute resolution system.",
-    "outcome": "Trust at Scale",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
-  },
-  {
-    "id": 20,
-    "type": "B2B Marketing",
-    "image": "/project20.png",
-    "title": "Multi-Tenant CRM for Agencies",
-    "description": "Engineered a white-label CRM platform for digital agencies — client onboarding pipelines, task automation, reporting and role-based access control.",
-    "outcome": "Agency Scalability",
-    "website": "example.com",
-    "websiteUrl": "https://example.com"
+        "type": "Local Service Website",
+    "image": "/hambleton.png",
+    "title": "Handyman Services Website",
+    "description": "Designed a conversion-focused local business website with clear service structure and lead generation flow.",
+    "outcome": "More Client Inquiries",
+    "website": "hambletonhandyman.com",
+    "websiteUrl": "https://www.hambletonhandyman.com/"
   }
 ]

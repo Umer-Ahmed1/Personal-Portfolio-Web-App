@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import RotatingText from './Rotating';
-import Threads from './Threads';
 
 
 export default function Hero() {
@@ -13,30 +12,18 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen bg-[#222222] text-[#EEEEEE] overflow-hidden"
     >
-      {/* ── Threads Background: rotated 45°, scaled up to bleed past all edges ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2.5 }}
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          transform: 'rotate(45deg) scale(3)',
-          transformOrigin: 'center center',
-        }}
-      >
-        <Threads
-          color={[0.706, 0.165, 0.165]}
-          amplitude={1}
-          distance={0}
-          enableMouseInteraction={false}
+      {/* ── Background Image ── */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <Image
+          src="/dp-bg.png"
+          alt="Background"
+          fill
+          priority
+          className="object-cover opacity-40"
         />
-      </motion.div>
+      </div>
 
-      {/* ── Main Grid ──
-        Mobile  (<768px):  flex column so image can flex-grow and stick to bottom
-        Desktop (≥768px):  two equal columns, both pinned to full viewport height
-      */}
-      <div className="relative z-10 flex flex-col min-h-screen md:grid md:grid-cols-2 md:min-h-screen">
+      <div className="relative z-10 flex flex-col min-h-screen lg:grid lg:grid-cols-[60%_40%] lg:min-h-screen">
 
         {/* ── LEFT: Text Content ── */}
         <motion.div
@@ -45,19 +32,19 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="
             flex flex-col justify-center
-            px-6 sm:px-10 md:px-12 lg:px-16 xl:px-24
+            px-6 sm:px-10 lg:px-12 xl:px-24
             pt-24 pb-10
-            md:pt-0 md:pb-0 md:h-screen
+            lg:justify-start lg:pt-32 lg:pb-0 lg:h-screen
             order-1
           "
         >
-          {/* Heading — shrinks at each breakpoint */}
+          {/* Heading */}
           <h1 className="
             font-light leading-tight
             text-3xl
             sm:text-4xl
-            md:text-[2.4rem]
-            lg:text-5xl
+            md:text-5xl
+            lg:text-[1.9rem]
             xl:text-6xl
             2xl:text-7xl
           ">
@@ -68,19 +55,18 @@ export default function Hero() {
 
           {/* Sub-copy */}
           <p className="
-            mt-6 md:mt-8 text-gray-300 max-w-xl
+            mt-6 text-gray-300 max-w-xl
             text-sm
             sm:text-base
-            md:text-[0.95rem]
-            lg:text-lg
+            md:text-lg
+            lg:text-[0.95rem]
             xl:text-xl
           ">
-            {/* Name + animated role badge */}
             <span className="flex items-center gap-2 flex-wrap">
               <span>I'm Umer Ahmed</span>
               <RotatingText
                 texts={['A Designer', 'A Developer', 'A Project Manager!']}
-                mainClassName="px-2 sm:px-3 bg-[#B42A2A] text-white overflow-hidden py-0.5 sm:py-1 md:py-1.5 justify-center rounded-2xl"
+                mainClassName="px-2 sm:px-3 bg-[#B42A2A] text-white overflow-hidden py-0.5 sm:py-1 lg:py-1.5 justify-center rounded-2xl"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -92,7 +78,6 @@ export default function Hero() {
               />
             </span>
 
-            {/* Body sentence */}
             <span className="block mt-2">
               I build scalable digital systems where seamless user experience
               meets technical precision and crystal-clear communication.
@@ -104,7 +89,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="flex flex-wrap gap-4 md:gap-5 mt-8 md:mt-10"
+            className="flex flex-wrap gap-4 mt-8"
           >
             <Link
               href="/portfolio"
@@ -113,9 +98,9 @@ export default function Hero() {
                 transition duration-300 hover:opacity-80
                 px-5 py-3
                 sm:px-6 sm:py-3.5
-                md:px-7 md:py-3.5
-                lg:px-8 lg:py-4
-                text-sm sm:text-sm md:text-sm lg:text-base
+                lg:px-7 lg:py-3.5
+                xl:px-8 xl:py-4
+                text-sm lg:text-sm xl:text-base
               "
             >
               Explore my portfolio
@@ -128,9 +113,9 @@ export default function Hero() {
                 transition duration-300 hover:bg-[#EEEEEE] hover:text-[#222222]
                 px-5 py-3
                 sm:px-6 sm:py-3.5
-                md:px-7 md:py-3.5
-                lg:px-8 lg:py-4
-                text-sm sm:text-sm md:text-sm lg:text-base
+                lg:px-7 lg:py-3.5
+                xl:px-8 xl:py-4
+                text-sm lg:text-sm xl:text-base
               "
             >
               Hire Me
@@ -138,11 +123,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* ── RIGHT: Portrait Image ──
-          Mobile:  flex-1 so it fills all remaining vertical space below the text,
-                   keeping the image pinned to the bottom of the section.
-          Desktop: h-screen as before — nothing changed.
-        */}
+        {/* ── RIGHT: Portrait Image ── */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
@@ -150,7 +131,7 @@ export default function Hero() {
           className="
             relative w-full
             flex-1
-            md:flex-none md:h-screen md:max-h-none
+            lg:flex-none lg:h-screen lg:max-h-none
             order-2
           "
         >
